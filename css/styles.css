@@ -1422,3 +1422,13 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .zeros, .tear-grid { margin-top: clamp(1.5rem, 3vw, 2.5rem); }
 .story__step { min-height: 42vh; }
 @media (max-width: 860px) { .story__step { min-height: 0; } }
+/* network cards: photos shown whole, side by side with the text */
+.link-card:has(.link-card__img) { display: grid; grid-template-columns: minmax(0, 42%) minmax(0, 1fr); grid-template-rows: 1fr auto; column-gap: clamp(1rem, 2vw, 1.75rem); align-items: start; min-height: 0; }
+.link-card__img { grid-row: 1 / span 2; width: 100%; height: auto; aspect-ratio: 784 / 754; object-fit: contain; border-radius: var(--radius); align-self: center; }
+.link-card:has(.link-card__img) > div { grid-column: 2; align-self: end; }
+.link-card:has(.link-card__img) > .link-arrow { grid-column: 2; align-self: end; }
+@media (max-width: 760px) {
+  .link-card:has(.link-card__img) { grid-template-columns: 1fr; grid-template-rows: auto; gap: 1rem; }
+  .link-card__img { grid-row: auto; max-width: 22rem; margin-inline: auto; }
+  .link-card:has(.link-card__img) > div, .link-card:has(.link-card__img) > .link-arrow { grid-column: 1; }
+}
