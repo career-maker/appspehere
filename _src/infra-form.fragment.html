@@ -1,0 +1,149 @@
+  <form id="spInfraForm" class="sp-infra-form" method="post" enctype="multipart/form-data" action="/infrastructure-partner-submit/">
+    <section class="sp-form-section">
+      <h2>1. Location Selection</h2>
+      <div class="sp-form-grid">
+        <div class="sp-field">
+          <label for="spState">Select State <span>*</span></label>
+          <select id="spState" name="state" required>
+            <option value="">Select State</option>
+            <option value="Kerala">Kerala</option>
+            <option value="Tamil Nadu">Tamil Nadu</option>
+            <option value="Karnataka">Karnataka</option>
+            <option value="Andhra Pradesh">Andhra Pradesh</option>
+            <option value="Telangana">Telangana</option>
+            <option value="Maharashtra">Maharashtra</option>
+          </select>
+        </div>
+        <div class="sp-field">
+          <label for="spDistrict">Select District <span>*</span></label>
+          <select id="spDistrict" name="district" required disabled>
+            <option value="">Select District</option>
+          </select>
+        </div>
+        <div class="sp-field sp-full">
+          <label for="spOffering">What would you like to offer? <span>*</span></label>
+          <select id="spOffering" name="offering_type" required>
+            <option value="">Select Offering</option>
+            <option value="Existing Warehouse on Lease">Existing Warehouse on Lease</option>
+            <option value="Build and Lease Warehouse">Build and Lease Warehouse</option>
+            <option value="Vehicle Support">Vehicle Support</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <section class="sp-form-section">
+      <h2>2. Personal / Business Details</h2>
+      <div class="sp-form-grid">
+        <div class="sp-field">
+          <label for="ownerName">Name of Person / Owner <span>*</span></label>
+          <input type="text" id="ownerName" name="owner_name" required>
+        </div>
+        <div class="sp-field">
+          <label for="businessName">Business / Trade Name</label>
+          <input type="text" id="businessName" name="business_name">
+        </div>
+        <div class="sp-field">
+          <label for="phone">Mobile Number <span>*</span></label>
+          <input type="tel" id="phone" name="phone" placeholder="+91" required>
+        </div>
+        <div class="sp-field">
+          <label for="email">Email ID <span>*</span></label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="sp-field">
+          <label for="gstNumber">GST Number, if applicable</label>
+          <input type="text" id="gstNumber" name="gst_number">
+        </div>
+        <div class="sp-field">
+          <label for="pinCode">PIN Code</label>
+          <input type="text" id="pinCode" name="pin_code">
+        </div>
+        <div class="sp-field sp-full">
+          <label for="address">Full Address / Location Details <span>*</span></label>
+          <textarea id="address" name="address" rows="3" required></textarea>
+        </div>
+        <div class="sp-field sp-full">
+          <label for="mapsLink">Google Maps Location Link / Coordinates</label>
+          <input type="url" id="mapsLink" name="maps_link" placeholder="Paste Google Maps link here">
+        </div>
+      </div>
+    </section>
+
+    <section id="existingWarehouseSection" class="sp-form-section sp-conditional-section">
+      <h2>3. Existing Warehouse Details</h2>
+      <div class="sp-form-grid">
+        <div class="sp-field"><label for="warehouseSqft">Total Available Area in Square Feet <span>*</span></label><input type="number" id="warehouseSqft" name="warehouse_sqft" min="0" data-required="true"></div>
+        <div class="sp-field"><label for="roofType">Roof Type</label><select id="roofType" name="roof_type"><option value="">Select Roof Type</option><option>RCC Roof</option><option>Sheet Roof</option><option>PUF Panel Roof</option><option>Truss Roof</option><option>Asbestos Sheet Roof</option><option>Other</option></select></div>
+        <div class="sp-field"><label for="floorType">Floor Type</label><select id="floorType" name="floor_type"><option value="">Select Floor Type</option><option>Concrete Flooring</option><option>VDF Flooring</option><option>Epoxy Flooring</option><option>Tile Flooring</option><option>Interlock Flooring</option><option>Other</option></select></div>
+        <div class="sp-field"><label for="loadingBays">Number of Loading Bays</label><select id="loadingBays" name="loading_bays"><option value="">Select</option><option>None</option><option>1</option><option>2</option><option>3</option><option>4 or more</option></select></div>
+        <div class="sp-field"><label for="boundaryWall">Is the property surrounded by boundary wall?</label><select id="boundaryWall" name="boundary_wall"><option value="">Select</option><option>Yes, fully covered</option><option>Partially covered</option><option>No boundary wall</option></select></div>
+        <div class="sp-field"><label for="approachRoadWidthWarehouse">Approach Road Width</label><select id="approachRoadWidthWarehouse" name="warehouse_approach_road_width"><option value="">Select</option><option>Below 10 feet</option><option>10 - 15 feet</option><option>16 - 20 feet</option><option>21 - 30 feet</option><option>Above 30 feet</option></select></div>
+        <div class="sp-field"><label for="approachRoadTypeWarehouse">Approach Road Type</label><select id="approachRoadTypeWarehouse" name="warehouse_approach_road_type"><option value="">Select</option><option>Tar Road</option><option>Concrete Road</option><option>Interlock Road</option><option>Gravel Road</option><option>Mud Road</option></select></div>
+        <div class="sp-field"><label for="warehouseWallType">Warehouse Wall Type</label><select id="warehouseWallType" name="warehouse_wall_type"><option value="">Select</option><option>RCC Wall</option><option>Brick Wall</option><option>Block Wall</option><option>Sheet Wall</option><option>Open-sided Shed</option><option>Other</option></select></div>
+        <div class="sp-field"><label for="centerHeight">Centre Height of Roof in Feet</label><input type="number" id="centerHeight" name="center_height_roof" min="0"></div>
+        <div class="sp-field"><label for="sideHeight">Roof Height from Side Wall in Feet</label><input type="number" id="sideHeight" name="side_wall_roof_height" min="0"></div>
+        <div class="sp-field"><label for="powerAvailability">Power Availability</label><select id="powerAvailability" name="power_availability"><option value="">Select</option><option>Single Phase</option><option>Three Phase</option><option>Not Available</option></select></div>
+        <div class="sp-field"><label for="waterAvailability">Water Availability</label><select id="waterAvailability" name="water_availability"><option value="">Select</option><option>Available</option><option>Not Available</option></select></div>
+        <div class="sp-field"><label for="truckEntryWarehouse">Vehicle Entry Possible</label><select id="truckEntryWarehouse" name="warehouse_vehicle_entry"><option value="">Select</option><option>LMV only</option><option>LCV / Pickup</option><option>Medium Truck</option><option>Heavy Truck</option><option>Container Vehicle</option></select></div>
+        <div class="sp-field"><label for="warehouseRent">Expected Monthly Rent / Lease Rate <span>*</span></label><input type="text" id="warehouseRent" name="warehouse_rent" placeholder="Example: ₹25 per sq.ft / ₹1,50,000 per month" data-required="true"></div>
+        <div class="sp-field"><label for="warehouseDeposit">Security Deposit, if any</label><input type="text" id="warehouseDeposit" name="warehouse_security_deposit" placeholder="Example: 3 months rent / ₹5,00,000"></div>
+        <div class="sp-field"><label for="warehouseAvailability">Availability Timeline</label><select id="warehouseAvailability" name="warehouse_availability"><option value="">Select</option><option>Immediate</option><option>Within 15 days</option><option>Within 30 days</option><option>Within 60 days</option><option>More than 60 days</option></select></div>
+        <div class="sp-field sp-full"><label for="warehousePhotos">Upload 4-5 Warehouse Photos</label><input type="file" id="warehousePhotos" name="warehouse_photos[]" accept="image/*" multiple><small>Suggested photos: front view, inside view, loading area, approach road, roof/floor.</small></div>
+        <div class="sp-field sp-full"><label for="warehouseRemarks">Additional Remarks</label><textarea id="warehouseRemarks" name="warehouse_remarks" rows="3"></textarea></div>
+      </div>
+    </section>
+
+    <section id="buildWarehouseSection" class="sp-form-section sp-conditional-section">
+      <h2>3. Build & Lease Warehouse Details</h2>
+      <div class="sp-form-grid">
+        <div class="sp-field"><label for="landArea">Land Area Available <span>*</span></label><input type="text" id="landArea" name="land_area" placeholder="Example: 50 cents / 1 acre / 2 acres" data-required="true"></div>
+        <div class="sp-field"><label for="proposedSqft">Proposed Warehouse Area in Square Feet</label><input type="number" id="proposedSqft" name="proposed_sqft" min="0"></div>
+        <div class="sp-field"><label for="landOwnership">Land Ownership Status</label><select id="landOwnership" name="land_ownership"><option value="">Select</option><option>Owned by applicant</option><option>Family-owned</option><option>Company-owned</option><option>Leased land</option><option>Under negotiation</option></select></div>
+        <div class="sp-field"><label for="constructionTimeline">How fast can you build and hand over? <span>*</span></label><select id="constructionTimeline" name="construction_timeline" data-required="true"><option value="">Select Timeline</option><option>Within 30 days</option><option>Within 45 days</option><option>Within 60 days</option><option>Within 90 days</option><option>Within 120 days</option><option>More than 120 days</option></select></div>
+        <div class="sp-field"><label for="vehicleEntryBuild">What type of vehicles can enter the compound?</label><select id="vehicleEntryBuild" name="build_vehicle_entry"><option value="">Select</option><option>LMV only</option><option>LCV / Pickup</option><option>Medium Truck</option><option>Heavy Truck</option><option>Container Vehicle</option></select></div>
+        <div class="sp-field"><label for="approachRoadWidthBuild">Approach Road Width</label><select id="approachRoadWidthBuild" name="build_approach_road_width"><option value="">Select</option><option>Below 10 feet</option><option>10 - 15 feet</option><option>16 - 20 feet</option><option>21 - 30 feet</option><option>Above 30 feet</option></select></div>
+        <div class="sp-field"><label for="approachRoadTypeBuild">Approach Road Type</label><select id="approachRoadTypeBuild" name="build_approach_road_type"><option value="">Select</option><option>Tar Road</option><option>Concrete Road</option><option>Interlock Road</option><option>Gravel Road</option><option>Mud Road</option></select></div>
+        <div class="sp-field"><label for="preferredLeaseTerm">Preferred Lease Term</label><select id="preferredLeaseTerm" name="preferred_lease_term"><option value="">Select</option><option>3 years</option><option>5 years</option><option>7 years</option><option>10 years</option><option>Flexible / Open to discussion</option></select></div>
+        <div class="sp-field"><label for="expectedBuildRent">Expected Rent / Lease Rate <span>*</span></label><input type="text" id="expectedBuildRent" name="expected_build_rent" placeholder="Example: ₹25 per sq.ft / ₹2,00,000 per month" data-required="true"></div>
+        <div class="sp-field"><label for="expectedBuildDeposit">Security Deposit, if any</label><input type="text" id="expectedBuildDeposit" name="expected_build_deposit"></div>
+        <div class="sp-field"><label for="statutoryApprovals">Statutory Approval Status</label><select id="statutoryApprovals" name="statutory_approvals"><option value="">Select</option><option>Already approved</option><option>Application submitted</option><option>Can apply immediately</option><option>Need guidance</option><option>Not sure</option></select></div>
+        <div class="sp-field"><label for="floodRisk">Flood / Waterlogging Risk</label><select id="floodRisk" name="flood_risk"><option value="">Select</option><option>No known issue</option><option>Minor waterlogging during heavy rain</option><option>Flood-prone area</option><option>Not sure</option></select></div>
+        <div class="sp-field sp-full"><label for="landPhotos">Upload Photos of Land / Location</label><input type="file" id="landPhotos" name="land_photos[]" accept="image/*" multiple><small>Suggested photos: road frontage, land view, entry point, nearby road, surroundings.</small></div>
+        <div class="sp-field sp-full"><label for="buildRemarks">Additional Remarks</label><textarea id="buildRemarks" name="build_remarks" rows="3"></textarea></div>
+      </div>
+    </section>
+
+    <section id="vehicleSection" class="sp-form-section sp-conditional-section">
+      <h2>3. Vehicle Details</h2>
+      <div class="sp-form-grid">
+        <div class="sp-field"><label for="vehicleCategory">Vehicle Category <span>*</span></label><select id="vehicleCategory" name="vehicle_category" data-required="true"><option value="">Select</option><option>LMV</option><option>LCV</option><option>Medium Commercial Vehicle</option><option>Heavy Commercial Vehicle</option></select></div>
+        <div class="sp-field"><label for="vehicleBodyType">Body Type</label><select id="vehicleBodyType" name="vehicle_body_type"><option value="">Select</option><option>Covered Body</option><option>Open Body</option><option>Container Body</option><option>Refrigerated Body</option><option>Pickup Body</option></select></div>
+        <div class="sp-field"><label for="vehicleBrand">Vehicle Brand</label><input type="text" id="vehicleBrand" name="vehicle_brand" placeholder="Example: Tata / Ashok Leyland / Mahindra"></div>
+        <div class="sp-field"><label for="vehicleModel">Vehicle Model</label><input type="text" id="vehicleModel" name="vehicle_model"></div>
+        <div class="sp-field"><label for="vehicleYear">Year of Make</label><input type="number" id="vehicleYear" name="vehicle_year" min="1990" max="2035"></div>
+        <div class="sp-field"><label for="vehicleRegNo">Vehicle Registration Number <span>*</span></label><input type="text" id="vehicleRegNo" name="vehicle_registration_number" data-required="true"></div>
+        <div class="sp-field"><label for="vehicleOwnerName">Name of Vehicle Owner</label><input type="text" id="vehicleOwnerName" name="vehicle_owner_name"></div>
+        <div class="sp-field"><label for="payloadCapacity">Payload Capacity</label><input type="text" id="payloadCapacity" name="payload_capacity" placeholder="Example: 1 Ton / 3 Ton / 7 Ton"></div>
+        <div class="sp-field"><label for="vehicleCondition">Vehicle Condition</label><select id="vehicleCondition" name="vehicle_condition"><option value="">Select</option><option>Excellent</option><option>Good</option><option>Average</option><option>Needs repair</option></select></div>
+        <div class="sp-field"><label for="permitType">Permit Type</label><select id="permitType" name="permit_type"><option value="">Select</option><option>Local Permit</option><option>State Permit</option><option>National Permit</option><option>Not sure</option></select></div>
+        <div class="sp-field"><label for="insuranceStatus">Insurance Status</label><select id="insuranceStatus" name="insurance_status"><option value="">Select</option><option>Valid</option><option>Expired</option><option>Renewal in progress</option></select></div>
+        <div class="sp-field"><label for="fitnessStatus">Fitness Certificate Status</label><select id="fitnessStatus" name="fitness_status"><option value="">Select</option><option>Valid</option><option>Expired</option><option>Renewal in progress</option><option>Not applicable</option></select></div>
+        <div class="sp-field"><label for="driverAvailable">Driver Availability</label><select id="driverAvailable" name="driver_available"><option value="">Select</option><option>Vehicle with driver</option><option>Vehicle only</option><option>Driver can be arranged</option></select></div>
+        <div class="sp-field"><label for="perKmCharge">Expected Per KM Charge <span>*</span></label><input type="text" id="perKmCharge" name="per_km_charge" placeholder="Example: ₹25/km" data-required="true"></div>
+        <div class="sp-field"><label for="dailyMinimum">Daily Minimum Charge, if any</label><input type="text" id="dailyMinimum" name="daily_minimum_charge" placeholder="Example: ₹1,500/day"></div>
+        <div class="sp-field"><label for="monthlyRental">Monthly Rental Option, if any</label><input type="text" id="monthlyRental" name="monthly_rental" placeholder="Example: ₹60,000/month"></div>
+        <div class="sp-field"><label for="availableTiming">Vehicle Availability</label><select id="availableTiming" name="vehicle_availability"><option value="">Select</option><option>Full day</option><option>Morning only</option><option>Evening only</option><option>Night delivery possible</option><option>Flexible</option></select></div>
+        <div class="sp-field sp-full"><label for="vehiclePhotos">Upload Vehicle Photos</label><input type="file" id="vehiclePhotos" name="vehicle_photos[]" accept="image/*" multiple><small>Suggested photos: front, side, rear, number plate, inside cargo area.</small></div>
+        <div class="sp-field sp-full"><label for="vehicleRemarks">Additional Remarks</label><textarea id="vehicleRemarks" name="vehicle_remarks" rows="3"></textarea></div>
+      </div>
+    </section>
+
+    <section class="sp-form-section">
+      <h2>4. Final Confirmation</h2>
+      <div class="sp-field sp-full"><label for="bestTime">Best Time to Contact</label><select id="bestTime" name="best_time_to_contact"><option value="">Select</option><option>Morning</option><option>Afternoon</option><option>Evening</option><option>Anytime</option></select></div>
+      <div class="sp-consent"><label><input type="checkbox" name="consent" required> I confirm that the details submitted are true to the best of my knowledge and I authorize Source Pro B2B2C / App Sphere B2B India Private Limited to contact me for verification and partnership discussions.</label></div>
+      <button type="submit" class="sp-submit-btn">Submit Partnership Interest</button>
+      <p class="sp-form-note">Submission of this form does not guarantee selection or approval. Source Pro B2B2C may verify location, documents, ownership, suitability, commercial terms, statutory approvals, and operational feasibility before proceeding.</p>
+    </section>
+  </form>
