@@ -1215,3 +1215,38 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 @media (min-width: 1100px) { .layer--store { width: min(47vw, 800px); padding-bottom: 15svh; padding-top: 0; right: 5vw; } }
 @media (min-width: 1100px) and (max-width: 1439px) { .layer--store { width: min(48vw, 700px); right: 4vw; } }
 @media (min-width: 768px) and (max-width: 1099px) and (orientation: landscape) { .layer--store { width: min(50vw, 80svh); padding-bottom: 26svh; } }
+
+/* ===== v12: small / zoomed laptops (e.g. 1100–1366 wide, short height) ===== */
+.nav a.nav__link, .nav button.nav__link { white-space: nowrap; }
+.nav .btn { white-space: nowrap; }
+@media (min-width: 1181px) and (max-width: 1360px) {
+  .nav a.nav__link, .nav button.nav__link { padding: .5rem .6rem; font-size: .88rem; }
+  .nav .btn--sm { padding: .5rem 1rem; font-size: .88rem; }
+  .brand__plate img { height: 40px; }
+}
+@media (min-width: 1181px) and (max-height: 760px) {
+  .stage { bottom: 1.5rem; max-width: 46rem; }
+  .stage h1 { font-size: clamp(2.6rem, min(6vw, 13.5svh), 6rem); }
+  .stage--intro .lead { font-size: clamp(.95rem, 2.4svh, 1.15rem); margin-top: .6rem; max-width: 30rem; }
+  .stage__kicker { font-size: .7rem; margin-bottom: .4rem; }
+  .stage__title { font-size: clamp(1.8rem, min(4vw, 9svh), 3.6rem); }
+  .stage__sub { font-size: clamp(.9rem, 2.2svh, 1.1rem); max-width: 28rem; }
+  .layer--store { width: min(44vw, 105svh); padding-bottom: 12svh; right: 3vw; }
+  .layer--eco { padding-top: calc(var(--header-h) + 3svh); }
+  .eco { height: min(34svh, 300px); }
+  .catalog { width: min(54vw, 120svh); }
+  .catalog__num { font-size: clamp(2.6rem, 9svh, 6rem); }
+  .hero__scroll { display: none; }
+}
+@media (min-width: 1181px) and (max-height: 600px) {
+  .stage--intro .lead { display: none; }
+  .stage h1 { font-size: clamp(2.2rem, 11svh, 4.5rem); }
+  .layer--store { width: min(40vw, 100svh); padding-bottom: 8svh; }
+}
+/* tablet landscape / small laptop with the collapsed menu: keep the hero text off the image */
+@media (min-width: 768px) and (max-width: 1180px) and (orientation: landscape) {
+  .stage { max-width: 50%; }
+  .stage--intro .lead { max-width: 100%; }
+}
+@media (min-width: 1181px) and (max-height: 760px) { .stage { bottom: 4.75rem; } .layer--store { padding-bottom: 20svh; } .hero__rail { bottom: 4.75rem; } }
+@media (min-width: 1181px) and (max-height: 600px) { .stage { bottom: 4.5rem; } .layer--store { padding-bottom: 22svh; } }
