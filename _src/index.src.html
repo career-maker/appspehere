@@ -181,35 +181,24 @@
 </section>
 
 <!-- ================= ECOSYSTEM ================= -->
-<section class="section" id="ecosystem" aria-labelledby="eco-h">
+<section class="section eco-section" id="ecosystem" aria-labelledby="eco-h">
   <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">B2B2C ecosystem</p>
-      <h2 id="eco-h">One platform. Four connected worlds.</h2>
-      <p class="lead">Source Pro enables B2B2C trade between distributors and retailers, and lets retailers serve their own customers digitally.</p>
-    </div>
-    <figure class="photo-band photo-band--wide" data-reveal><img src="assets/ecosystem-india.webp" srcset="assets/ecosystem-india-800.webp 800w, assets/ecosystem-india.webp 1600w" sizes="(max-width: 700px) 100vw, 60vw" width="1600" height="900" alt="Manufacturer, super stockist, distributor, retailer and customers connected across India" loading="lazy" decoding="async"></figure>
-    <div class="ecosystem">
-      <div class="eco-stage" aria-hidden="true">
-        <svg viewBox="0 0 600 600">
-          <path class="link" id="e1" d="M120 90 C300 90 300 230 480 230"/>
-          <path class="link" id="e2" d="M480 230 C300 230 300 370 120 370"/>
-          <path class="link" id="e3" d="M120 370 C300 370 300 510 480 510"/>
-          <path class="pulse" d="M120 90 C300 90 300 230 480 230"/><path class="pulse" d="M480 230 C300 230 300 370 120 370"/><path class="pulse" d="M120 370 C300 370 300 510 480 510"/>
-          <circle class="pkt" r="5" data-pkt><animateMotion dur="5s" repeatCount="indefinite" path="M120 90 C300 90 300 230 480 230 C300 230 300 370 120 370 C300 370 300 510 480 510"/></circle>
-          <circle class="pkt" r="5" opacity=".6" data-pkt><animateMotion dur="5s" begin="-2.5s" repeatCount="indefinite" path="M120 90 C300 90 300 230 480 230 C300 230 300 370 120 370 C300 370 300 510 480 510"/></circle>
-          <g class="eco-node is-active" data-eco-node="0"><circle class="bg" cx="120" cy="90" r="58"/><text x="120" y="95">Manufacturer</text></g>
-          <g class="eco-node" data-eco-node="1"><circle class="bg" cx="480" cy="230" r="58"/><text x="480" y="235">Distributor</text></g>
-          <g class="eco-node" data-eco-node="2"><circle class="bg" cx="120" cy="370" r="58"/><text x="120" y="375">Retailer</text></g>
-          <g class="eco-node" data-eco-node="3"><circle class="bg" cx="480" cy="510" r="58"/><text x="480" y="515">Customer</text></g>
-        </svg>
+    <div class="eco-reveal" tabindex="0" aria-label="B2B2C ecosystem: hover, focus or tap to see the details">
+      <p class="eco-vert" aria-hidden="true">B2B2C ecosystem</p>
+      <div class="eco-content">
+        <div class="eco-content__in">
+          <p class="eyebrow">B2B2C ecosystem</p>
+          <h2 id="eco-h">One platform. Four connected worlds.</h2>
+          <p class="lead">Source Pro enables B2B2C trade between distributors and retailers, and lets retailers serve their own customers digitally.</p>
+          <div class="eco-tabs" role="tablist" aria-label="Ecosystem participants" aria-orientation="vertical">
+            <button class="eco-tab" role="tab" aria-selected="true" id="et0" data-i="0"><span class="eco-tab__n">01</span><span><strong>Manufacturer</strong><span class="desc">Puts the entire product catalogue in front of every retailer in the region — without a ground salesperson.</span></span></button>
+            <button class="eco-tab" role="tab" aria-selected="false" tabindex="-1" id="et1" data-i="1"><span class="eco-tab__n">02</span><span><strong>Distributor</strong><span class="desc">Zero-stock digital distribution across an assigned territory, on conventional margins.</span></span></button>
+            <button class="eco-tab" role="tab" aria-selected="false" tabindex="-1" id="et2" data-i="2"><span class="eco-tab__n">03</span><span><strong>Retailer</strong><span class="desc">A digital hypermarket under the shop's own name — selling to existing, trusting customers.</span></span></button>
+            <button class="eco-tab" role="tab" aria-selected="false" tabindex="-1" id="et3" data-i="3"><span class="eco-tab__n">04</span><span><strong>Customer</strong><span class="desc">Orders from a trusted local shop through the app; the retailer delivers locally.</span></span></button>
+          </div>
+        </div>
       </div>
-      <div class="eco-tabs" role="tablist" aria-label="Ecosystem participants" aria-orientation="vertical">
-        <button class="eco-tab" role="tab" aria-selected="true" id="et0" data-i="0"><span class="eco-tab__n">01</span><span><strong>Manufacturer</strong><span class="desc">Puts the entire product catalogue in front of every retailer in the region — without a ground salesperson.</span></span></button>
-        <button class="eco-tab" role="tab" aria-selected="false" tabindex="-1" id="et1" data-i="1"><span class="eco-tab__n">02</span><span><strong>Distributor</strong><span class="desc">Zero-stock digital distribution across an assigned territory, on conventional margins.</span></span></button>
-        <button class="eco-tab" role="tab" aria-selected="false" tabindex="-1" id="et2" data-i="2"><span class="eco-tab__n">03</span><span><strong>Retailer</strong><span class="desc">A digital hypermarket under the shop's own name — selling to existing, trusting customers.</span></span></button>
-        <button class="eco-tab" role="tab" aria-selected="false" tabindex="-1" id="et3" data-i="3"><span class="eco-tab__n">04</span><span><strong>Customer</strong><span class="desc">Orders from a trusted local shop through the app; the retailer delivers locally.</span></span></button>
-      </div>
+      <figure class="eco-figure"><img src="assets/ecosystem-india.webp" srcset="assets/ecosystem-india-800.webp 800w, assets/ecosystem-india.webp 1600w" sizes="(max-width: 900px) 100vw, 80vw" width="1600" height="900" alt="Manufacturer, super stockist, distributor, retailer and customers connected across India in one Source Pro ecosystem" loading="lazy" decoding="async"></figure>
     </div>
   </div>
 </section>

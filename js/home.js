@@ -41,6 +41,14 @@
   ecoNodes.forEach(function (n, i) { n.addEventListener('click', function () { selectEco(i); }); });
   if (reduce) document.querySelectorAll('[data-pkt]').forEach(function (p) { p.remove(); });
 
+
+  // Ecosystem reveal: tap/click toggles on touch laptops (hover handled in CSS)
+  var ecoReveal = document.querySelector('.eco-reveal');
+  if (ecoReveal) ecoReveal.addEventListener('click', function (e) {
+    if (e.target.closest('.eco-tab')) return;
+    if (window.matchMedia('(hover: none) and (min-width: 901px)').matches) ecoReveal.classList.toggle('is-open');
+  });
+
   // How-it-works expanding cards
   var steps = Array.prototype.slice.call(document.querySelectorAll('.step'));
   steps.forEach(function (s) {
