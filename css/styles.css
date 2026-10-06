@@ -1303,3 +1303,16 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 @media (prefers-reduced-motion: reduce) { .eco-content, .eco-figure, .eco-vert { transition: none; } }
 .eco-figure img { object-position: 75% 50%; }
+
+/* v14.1: ecosystem left panel on white */
+.eco-reveal { background: #fff; color: var(--color-text); border: 1px solid var(--color-border); }
+.eco-content__in .lead { color: var(--color-muted); }
+.eco-content__in .eyebrow { color: var(--color-primary); }
+.eco-vert { background: #fff; color: var(--color-primary); border-left: 0; border-right: 1px solid var(--color-border); }
+.eco-reveal .eco-tab { background: #f3f5fb; border-color: var(--color-border); color: var(--color-text); }
+.eco-reveal .eco-tab:hover { border-color: var(--color-primary); }
+.eco-reveal .eco-tab__n { color: var(--color-accent-strong); }
+.eco-reveal .eco-tab[aria-selected="true"] { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
+.eco-reveal .eco-tab[aria-selected="true"] .eco-tab__n { color: var(--color-accent); }
+.eco-figure::after { background: linear-gradient(90deg, rgba(255, 255, 255, .25), transparent 18%); }
+@media (max-width: 900px) { .eco-figure::after { background: none; } }
