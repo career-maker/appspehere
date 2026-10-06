@@ -203,6 +203,19 @@
     return function () { if (off) off(); };
   });
 
+  /* ---------- digital hypermarket: dots follow the mobile carousel ---------- */
+  (function () {
+    var track = document.getElementById('story-steps');
+    var dotEls = document.querySelectorAll('.story__dots i');
+    if (!track || !dotEls.length) return;
+    track.addEventListener('scroll', function () {
+      var cards = track.querySelectorAll('.story__step');
+      var mid = track.scrollLeft + track.clientWidth / 2, best = 0, d = 1e9;
+      cards.forEach(function (c, i) { var dd = Math.abs(c.offsetLeft + c.offsetWidth / 2 - mid - track.offsetLeft); if (dd < d) { d = dd; best = i; } });
+      dotEls.forEach(function (el, i) { el.classList.toggle('is-active', i === best); });
+    }, { passive: true });
+  })();
+
   /* ---------- sticky story steps ---------- */
   var storySteps = Array.prototype.slice.call(document.querySelectorAll('.story__step'));
   var visuals = Array.prototype.slice.call(document.querySelectorAll('.story__visual'));
