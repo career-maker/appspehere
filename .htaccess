@@ -1,0 +1,37 @@
+# Source Pro B2B2C — Apache (cPanel) configuration
+Options -Indexes
+
+# ---------- Security headers ----------
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=31536000"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-XSS-Protection "1; mode=block"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+  Header always set Cross-Origin-Opener-Policy "same-origin-allow-popups"
+</IfModule>
+
+# ---------- Hide repository + build files ----------
+RedirectMatch 404 /\.git
+RedirectMatch 404 /_src(/|$)
+<FilesMatch "^(\.gitignore|\.htaccess)$">
+  Require all denied
+</FilesMatch>
+
+# ---------- Performance ----------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml application/json
+</IfModule>
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType text/css "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+<IfModule mod_mime.c>
+  AddType image/webp .webp
+</IfModule>
