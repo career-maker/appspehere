@@ -1374,3 +1374,30 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 @media (max-width: 860px) { .story__thumb-num { place-items: end start; padding: 0 1.2rem .8rem; font-size: 2.2rem; } }
 .solution { padding-block: clamp(4rem, 8vw, 7rem); }
+
+/* ===== v17: design consistency pass ===== */
+:root { --fs-h2: clamp(2rem, 1rem + 3vw, 4rem); }
+/* one section-title style everywhere */
+.section-head h2, .h2, .problem__h, .solution__text h2, .platform__h, .eco-content__in h2, .cta-band h2, .faq h2, .contact__info .h2, .page-hero--photo ~ .section .h2 {
+  font-family: var(--font-display); font-size: var(--fs-h2); font-weight: 700; line-height: 1.04; letter-spacing: -.03em; text-transform: none;
+}
+.problem__h { margin-bottom: clamp(1.25rem, 3vw, 2.25rem); }
+/* identical rhythm: eyebrow → title → lead */
+.eyebrow { margin-bottom: 1rem; }
+.section-head h2 + .lead, .h2 + .lead, .solution__text .lead, .eco-content__in .lead { margin-top: 1.25rem; }
+/* identical top spacing for every section (no per-section overrides) */
+.section, .solution, .problem-section, .app-section, .eco-section, .tear-section, .cta, .cta-band { padding-block: var(--space-section); }
+.form-wrap { padding-block: var(--space-section); }
+/* titles start at the top of two-column sections, so the gap above is the same everywhere */
+.split, .split--img, .two, .problem, .solution__grid, .platform, .faq, .contact { align-items: start; }
+.solution__grid .solution__fig { align-self: center; }
+.platform > .app-visual { align-self: center; }
+/* CTA blocks get an eyebrow like every other section */
+.cta .eyebrow, .cta-band .eyebrow { margin-bottom: 1rem; }
+.page-hero--photo .page-hero__grid { align-items: start; }
+/* v17.1: small-screen overflow fixes */
+@media (max-width: 1000px) { .blog-layout { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 640px) { .sidebar { grid-template-columns: minmax(0, 1fr); } }
+.blog-layout > *, .article > * { min-width: 0; }
+.share { flex-wrap: wrap; }
+.article, .article p, .article h2, .article blockquote { overflow-wrap: anywhere; }

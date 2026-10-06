@@ -68,7 +68,7 @@ def cta_band(text, sub, extra=""):
     return """
   <section class="section on-ink cta-band">
     <div class="container cta-band__in">
-      <div><h2>%s</h2><p class="lead">%s</p></div>
+      <div><p class="eyebrow">Next step</p><h2>%s</h2><p class="lead">%s</p></div>
       <div class="stage__cta"><a class="btn" href="%s" target="_blank" rel="noopener">Enquire now on WhatsApp %s</a>%s</div>
     </div>
   </section>""" % (text, sub, wa("Hello Source Pro, I would like to know more."), ARROW, extra)
@@ -178,6 +178,7 @@ contact = """
   </div></section>
   <section class="section"><div class="container contact">
     <div class="contact__info">
+      <p class="eyebrow">Get in touch</p>
       <h2 class="h2">Talk to the Source Pro team.</h2>
       <ul class="contact-list">
         <li><strong>Address</strong>App Sphere B2B India Private Limited, CSP XXI/271-F, 1st Floor, Emmanuel George Memorial Building, Champakkad Jn, Arthunkal PO, Cherthala, Alappuzha, Kerala – 688530</li>
