@@ -24,7 +24,7 @@
   function selectEco(i, focus) {
     ecoTabs.forEach(function (t, k) {
       var on = k === i;
-      t.setAttribute('aria-selected', String(on));
+      t.setAttribute('aria-pressed', String(on));
       t.tabIndex = on ? 0 : -1;
       if (on && focus) t.focus();
     });

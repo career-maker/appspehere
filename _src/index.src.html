@@ -185,18 +185,18 @@
 <!-- ================= ECOSYSTEM ================= -->
 <section class="section eco-section" id="ecosystem" aria-labelledby="eco-h">
   <div class="container">
-    <div class="eco-reveal" tabindex="0" aria-label="B2B2C ecosystem: hover, focus or tap to see the details">
+    <div class="eco-reveal" role="group" tabindex="0" aria-label="B2B2C ecosystem: hover, focus or tap to see the details">
       <p class="eco-vert" aria-hidden="true">B2B2C ecosystem</p>
       <div class="eco-content">
         <div class="eco-content__in">
           <p class="eyebrow">B2B2C ecosystem</p>
           <h2 id="eco-h">One platform. Four connected worlds.</h2>
           <p class="lead">Source Pro enables B2B2C trade between distributors and retailers, and lets retailers serve their own customers digitally.</p>
-          <div class="eco-tabs" role="tablist" aria-label="Ecosystem participants" aria-orientation="vertical">
-            <button class="eco-tab" role="tab" aria-selected="true" id="et0" data-i="0"><span class="eco-tab__n">01</span><span><strong>Manufacturer</strong><span class="desc">Puts the entire product catalogue in front of every retailer in the region — without a ground salesperson.</span></span></button>
-            <button class="eco-tab" role="tab" aria-selected="false" tabindex="-1" id="et1" data-i="1"><span class="eco-tab__n">02</span><span><strong>Distributor</strong><span class="desc">Zero-stock digital distribution across an assigned territory, on conventional margins.</span></span></button>
-            <button class="eco-tab" role="tab" aria-selected="false" tabindex="-1" id="et2" data-i="2"><span class="eco-tab__n">03</span><span><strong>Retailer</strong><span class="desc">A digital hypermarket under the shop's own name — selling to existing, trusting customers.</span></span></button>
-            <button class="eco-tab" role="tab" aria-selected="false" tabindex="-1" id="et3" data-i="3"><span class="eco-tab__n">04</span><span><strong>Customer</strong><span class="desc">Orders from a trusted local shop through the app; the retailer delivers locally.</span></span></button>
+          <div class="eco-tabs" role="group" aria-label="Ecosystem participants">
+            <button class="eco-tab" aria-pressed="true" id="et0" data-i="0"><span class="eco-tab__n">01</span><span><strong>Manufacturer</strong><span class="desc">Puts the entire product catalogue in front of every retailer in the region — without a ground salesperson.</span></span></button>
+            <button class="eco-tab" aria-pressed="false" tabindex="-1" id="et1" data-i="1"><span class="eco-tab__n">02</span><span><strong>Distributor</strong><span class="desc">Zero-stock digital distribution across an assigned territory, on conventional margins.</span></span></button>
+            <button class="eco-tab" aria-pressed="false" tabindex="-1" id="et2" data-i="2"><span class="eco-tab__n">03</span><span><strong>Retailer</strong><span class="desc">A digital hypermarket under the shop's own name — selling to existing, trusting customers.</span></span></button>
+            <button class="eco-tab" aria-pressed="false" tabindex="-1" id="et3" data-i="3"><span class="eco-tab__n">04</span><span><strong>Customer</strong><span class="desc">Orders from a trusted local shop through the app; the retailer delivers locally.</span></span></button>
           </div>
         </div>
       </div>
@@ -242,19 +242,19 @@
     <div class="steps">
       <button class="step" type="button" aria-expanded="true" aria-controls="s1"><img class="step__bg" src="assets/partners-handshake.webp" srcset="assets/partners-handshake-520.webp 520w, assets/partners-handshake.webp 784w" sizes="(max-width: 700px) 100vw, 60vw" alt="" style="object-position:50% 50%" loading="lazy" decoding="async">
         <span class="step__n" aria-hidden="true">1</span>
-        <span><h3>Distributor onboards the retailer</h3><span class="step__more" id="s1"><span><p>The area distributor visits stores and onboards retailers in minutes — with no paperwork.</p></span></span></span>
+        <span><span class="step__t">Distributor onboards the retailer</span><span class="step__more" id="s1"><span><span class="step__p">The area distributor visits stores and onboards retailers in minutes — with no paperwork.</span></span></span></span>
       </button>
       <button class="step" type="button" aria-expanded="false" aria-controls="s2"><img class="step__bg" src="assets/digital-hypermarket.webp" srcset="assets/digital-hypermarket-700.webp 700w, assets/digital-hypermarket.webp 1400w" sizes="(max-width: 700px) 100vw, 60vw" alt="" style="object-position:50% 40%" loading="lazy" decoding="async">
         <span class="step__n" aria-hidden="true">2</span>
-        <span><h3>Retailer becomes a digital hypermarket</h3><span class="step__more" id="s2"><span><p>Zero-cost access to 25,000+ products and a 24/7 storefront under the retailer's own name.</p></span></span></span>
+        <span><span class="step__t">Retailer becomes a digital hypermarket</span><span class="step__more" id="s2"><span><span class="step__p">Zero-cost access to 25,000+ products and a 24/7 storefront under the retailer's own name.</span></span></span></span>
       </button>
       <button class="step" type="button" aria-expanded="false" aria-controls="s3"><img class="step__bg" src="assets/ecosystem-india.webp" srcset="assets/ecosystem-india-800.webp 800w, assets/ecosystem-india.webp 1600w" sizes="(max-width: 700px) 100vw, 60vw" alt="" style="object-position:88% 55%" loading="lazy" decoding="async">
         <span class="step__n" aria-hidden="true">3</span>
-        <span><h3>Customers order from their trusted local shop</h3><span class="step__more" id="s3"><span><p>Existing customers download the app and order from the retailer they already know.</p></span></span></span>
+        <span><span class="step__t">Customers order from their trusted local shop</span><span class="step__more" id="s3"><span><span class="step__p">Existing customers download the app and order from the retailer they already know.</span></span></span></span>
       </button>
       <button class="step" type="button" aria-expanded="false" aria-controls="s4"><img class="step__bg" src="assets/distributor-warehouse.webp" srcset="assets/distributor-warehouse-520.webp 520w, assets/distributor-warehouse.webp 784w" sizes="(max-width: 700px) 100vw, 60vw" alt="" style="object-position:50% 50%" loading="lazy" decoding="async">
         <span class="step__n" aria-hidden="true">4</span>
-        <span><h3>Everyone wins</h3><span class="step__more" id="s4"><span><p>Orders flow through the distributor to the retailer. The retailer delivers locally, retains margins and creates employment.</p></span></span></span>
+        <span><span class="step__t">Everyone wins</span><span class="step__more" id="s4"><span><span class="step__p">Orders flow through the distributor to the retailer. The retailer delivers locally, retains margins and creates employment.</span></span></span></span>
       </button>
     </div>
   </div>
