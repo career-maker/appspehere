@@ -1403,3 +1403,14 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .article, .article p, .article h2, .article blockquote { overflow-wrap: anywhere; }
 /* testimonial avatar initials were inheriting the muted caption colour */
 .quote figcaption .avatar { color: #fff; font-size: 1.05rem; letter-spacing: .02em; }
+/* side widgets: identical size, flush to the right edge, hover slides (no width change) */
+.side-widgets { right: 0; gap: 6px; width: 52px; }
+.sw { width: 52px; height: 52px; border-radius: 12px 0 0 12px; transition: transform var(--t-fast) var(--ease), background var(--t-fast); transform: translateX(0); }
+.sw:hover, .sw:focus-visible { width: 52px; transform: translateX(-6px); }
+@media (min-width: 1101px) { .sw { margin: 0; } }
+@media (max-width: 1100px) { .side-widgets { width: auto; right: 20px; } .sw { border-radius: 50%; } .sw:hover, .sw:focus-visible { transform: scale(1.08); } }
+@media (max-width: 767px) { .side-widgets { right: 76px; } }
+@media (max-width: 479px) { .side-widgets { right: 70px; } }
+@media (max-width: 1100px) { .sw { width: 46px; height: 46px; } .sw:hover, .sw:focus-visible { width: 46px; } }
+@media (max-width: 767px) { .sw, .sw:hover, .sw:focus-visible { width: 44px; height: 44px; } }
+@media (max-width: 479px) { .sw, .sw:hover, .sw:focus-visible { width: 40px; height: 40px; } }
