@@ -1443,3 +1443,18 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 @media (max-width: 900px) { .eco-figure { min-height: 0; } }
 .eco-content__in { box-sizing: border-box; padding-right: clamp(1.25rem, 2.4vw, 2.25rem); } .eco-content__in .eco-tabs { padding-right: 0; }
 .eco-content__in { width: min(36rem, 44vw); }
+/* ecosystem: clear gap between the content and the photo */
+.eco-content__in { padding-right: clamp(2rem, 3.4vw, 3.25rem); padding-left: clamp(1.5rem, 2.8vw, 2.75rem); }
+.eco-reveal .eco-tab:hover { transform: none; }
+.eco-reveal .eco-tab { width: 100%; }
+.eco-content__in .eco-tabs { width: 100%; }
+@media (min-width: 901px) {
+  .eco-reveal:hover .eco-content, .eco-reveal:focus-within .eco-content, .eco-reveal.is-open .eco-content { flex-basis: min(38rem, 46vw); }
+  .eco-content__in { width: min(38rem, 46vw); }
+}
+@media (max-width: 900px) { .eco-content__in { padding-inline: clamp(1.25rem, 5vw, 2rem); } }
+@media (min-width: 901px) {
+  .eco-reveal { --eco-w: min(38rem, 46vw); }
+  #ecosystem .eco-reveal:hover .eco-content, #ecosystem .eco-reveal:focus-within .eco-content, #ecosystem .eco-reveal.is-open .eco-content { flex-basis: var(--eco-w); }
+  #ecosystem .eco-content__in { width: var(--eco-w); }
+}
