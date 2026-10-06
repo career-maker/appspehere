@@ -65,4 +65,22 @@
       panel.classList.toggle('is-open', open);
     });
   });
+
+  /* legal pages: highlight the section in view; collapse the contents list on phones */
+  (function () {
+    var links = document.querySelectorAll('.legal__tocbox a');
+    if (!links.length || !('IntersectionObserver' in window)) return;
+    var box = document.querySelector('.legal__tocbox');
+    if (box && window.matchMedia('(max-width: 960px)').matches) box.removeAttribute('open');
+    var map = {};
+    links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        links.forEach(function (a) { a.classList.remove('is-active'); });
+        var a = map[e.target.id]; if (a) a.classList.add('is-active');
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    document.querySelectorAll('.legal__sec').forEach(function (s) { io.observe(s); });
+  })();
 })();

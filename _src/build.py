@@ -169,4 +169,5 @@ dist = HEAD.format(
 """
 open(os.path.join(ROOT, "distributors.html"), "w", encoding="utf8").write(dist)
 exec(open(os.path.join(S, "pages.py"), encoding="utf8").read())
+exec(open(os.path.join(S, "legal_pages.py"), encoding="utf8").read())
 print("built")
