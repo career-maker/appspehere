@@ -97,7 +97,7 @@ about = hero("About", "About Source Pro B2B2C",
   </div></section>
   <section class="section on-ink philosophy" style="text-align:left"><div class="container">
     <p class="eyebrow">Founder's message</p>
-    <figure><blockquote style="margin:0;font-family:var(--font-display);font-weight:600;font-size:clamp(1.5rem,1rem+2.4vw,3rem);line-height:1.12;max-width:44rem">“The future of retail must not only be digital — it must also remain <span style="color:var(--color-accent)">human</span>.”</blockquote>
+    <figure><blockquote style="margin:0;font-family:var(--font-display);font-weight:600;font-size:clamp(1.5rem, 1rem + 2.4vw, 3rem);line-height:1.12;max-width:44rem">“The future of retail must not only be digital — it must also remain <span style="color:var(--color-accent)">human</span>.”</blockquote>
     <figcaption style="margin-top:1.25rem"><strong>Jaideep Oommen</strong><br><span class="muted">Founder Director &amp; CEO</span></figcaption></figure>
     <p class="lead" style="margin-top:2rem">India's retail is undergoing massive transformation. Traditional retailers face displacement by billion-dollar corporations, but the solution isn't choosing between technology and tradition — it's creating bridges that enable digital inclusion without displacement.</p>
   </div></section>
@@ -123,7 +123,7 @@ POST_TITLE = "Why%20India%20Cannot%20Afford%20to%20Lose%20Its%20Kirana%20Stores"
 
 
 def share():
-    return ('<div class="share" aria-label="Share this article"><span>Share</span>'
+    return ('<div class="share" role="group" aria-label="Share this article"><span>Share</span>'
             '<a href="https://www.facebook.com/sharer/sharer.php?u=' + POST_URL + '" target="_blank" rel="noopener" aria-label="Share on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5H16l.5-3h-3V8.6c0-.9.3-1.6 1.6-1.6h1.500V4.300c-.3 0-1.200-.1-2.300-.1-2.300 0-3.800 1.400-3.800 3.900v2.400H8v3h2.500V21z"/></svg></a>'
             '<a href="https://wa.me/?text=' + POST_TITLE + '%20' + POST_URL + '" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 20l1.200-4A8 8 0 118 19z"/></svg></a>'
             '<a href="https://www.linkedin.com/sharing/share-offsite/?url=' + POST_URL + '" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 9h3v10H5zM6.500 4.500a1.700 1.700 0 110 3.400 1.700 1.700 0 010-3.400zM10 9h2.900v1.400c.5-.9 1.600-1.600 3.100-1.600 3 0 3.600 2 3.600 4.600V19h-3v-5c0-1.200 0-2.600-1.600-2.600S13 12.700 13 14v5h-3z"/></svg></a>'

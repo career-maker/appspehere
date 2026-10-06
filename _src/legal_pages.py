@@ -31,17 +31,17 @@ def legal_page(doc):
     <h1>%s</h1>
     <p>Source Pro B2B2C · App Sphere B2B India Private Limited</p>
   </div></section>
-  <section class="section"><div class="container legal">
+  <div class="section"><div class="container legal">
     <aside class="legal__toc" aria-label="On this page">
       <details class="legal__tocbox" open><summary>On this page</summary><ol>%s</ol></details>
       <nav class="legal__others" aria-label="Legal pages"><h2>Legal</h2>%s</nav>
     </aside>
-    <article class="legal__body">
+    <div class="legal__body">
       <dl class="legal__meta">%s</dl>
       <div class="legal__intro">%s</div>
       %s
-    </article>
-  </div></section>""" % (esc(doc["title"]), esc(doc["title"]), toc, others, meta, intro, secs)
+    </div>
+  </div></div>""" % (esc(doc["title"]), esc(doc["title"]), toc, others, meta, intro, secs)
     page(doc["file"], "%s — Source Pro B2B2C" % doc["title"], doc["desc"], doc["canon"], body)
 
 
