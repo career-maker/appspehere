@@ -1458,3 +1458,18 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   #ecosystem .eco-reveal:hover .eco-content, #ecosystem .eco-reveal:focus-within .eco-content, #ecosystem .eco-reveal.is-open .eco-content { flex-basis: var(--eco-w); }
   #ecosystem .eco-content__in { width: var(--eco-w); }
 }
+
+/* Safari/iOS: backdrop-filter on the header made the fixed mobile menu relative to the header (collapsed menu).
+   Put the blur on a pseudo-element instead. */
+.header.is-scrolled, .header--solid { background: none; backdrop-filter: none; -webkit-backdrop-filter: none; box-shadow: none; }
+.header::before { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(15, 21, 71, .0); transition: background var(--t-med) var(--ease), box-shadow var(--t-med); }
+.header.is-scrolled::before, .header--solid::before { background: rgba(15, 21, 71, .9); -webkit-backdrop-filter: blur(14px) saturate(1.2); backdrop-filter: blur(14px) saturate(1.2); box-shadow: 0 1px 0 var(--color-ink-border); }
+.header { isolation: isolate; }
+@media (max-width: 1180px) { .nav { z-index: 1; } .header__bar { position: relative; z-index: 2; } .nav { position: fixed; top: var(--header-h); left: 0; right: 0; bottom: 0; height: calc(100vh - var(--header-h)); height: calc(100dvh - var(--header-h)); } }
+/* WebKit: a promoted layer left an unpainted patch in the hero — paint the base colour on the pin itself */
+.hero__pin { background: #0d1650; }
+.hero__bg { z-index: 0; }
+.hero__scene, .hero__copy, .hero__rail, .hero__scroll { z-index: 1; }
+.hero__rail, .hero__scroll { z-index: 2; }
+/* WebKit paints a light patch for drop-shadow filters on large transparent hero images — no filters there */
+.catalog__img, .photo-frame--scene img, .solution__fig img, .app-visual img { filter: none !important; }
