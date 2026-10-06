@@ -1473,3 +1473,31 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .hero__rail, .hero__scroll { z-index: 2; }
 /* WebKit paints a light patch for drop-shadow filters on large transparent hero images — no filters there */
 .catalog__img, .photo-frame--scene img, .solution__fig img, .app-visual img { filter: none !important; }
+
+/* footer columns: plain headings on desktop, expandable on mobile */
+.fcol__btn { all: unset; display: inline-flex; align-items: center; gap: .5rem; font: inherit; color: inherit; letter-spacing: inherit; text-transform: inherit; cursor: default; pointer-events: none; }
+.fcol__btn svg { display: none; }
+@media (max-width: 767px) {
+  .footer__grid { gap: 0; }
+  .footer__grid > div:first-child { padding-bottom: 1.25rem; }
+  .footer__grid nav, .footer__grid address { border-top: 1px solid var(--color-ink-border); }
+  .footer__grid address { border-bottom: 1px solid var(--color-ink-border); }
+  .fcol__h { margin: 0 !important; }
+  .fcol__btn { pointer-events: auto; cursor: pointer; width: 100%; box-sizing: border-box; justify-content: space-between; padding: 1rem 0; min-height: 48px; color: var(--color-ink-text); }
+  .fcol__btn:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 2px; border-radius: 6px; }
+  .fcol__btn svg { display: block; flex: none; transition: transform var(--t-med) var(--ease); }
+  .fcol__btn[aria-expanded="true"] svg { transform: rotate(180deg); }
+  .fcol__panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--t-med) var(--ease); }
+  .fcol__panel > * { overflow: hidden; min-height: 0; margin-top: 0; }
+  .fcol__panel.is-open { grid-template-rows: 1fr; padding-bottom: 1rem; }
+  .fcol__panel > ul { display: block; }
+  .footer__co { margin-top: 1rem; }
+  .footer__grid address > .footer__co { margin-bottom: 0; }
+  .footer__grid address p { margin: 0 0 .75rem; }
+}
+@media (min-width: 768px) { .fcol__panel { display: block; } }
+@media (max-width: 767px) {
+  .fcol__panel { display: block; grid-template-rows: none; max-height: 0; overflow: hidden; padding-bottom: 0; transition: max-height var(--t-med) var(--ease), padding var(--t-med) var(--ease); }
+  .fcol__panel > * { overflow: visible; }
+  .fcol__panel.is-open { max-height: 24rem; padding-bottom: 1rem; }
+}
