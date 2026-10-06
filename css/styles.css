@@ -1401,3 +1401,5 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .blog-layout > *, .article > * { min-width: 0; }
 .share { flex-wrap: wrap; }
 .article, .article p, .article h2, .article blockquote { overflow-wrap: anywhere; }
+/* testimonial avatar initials were inheriting the muted caption colour */
+.quote figcaption .avatar { color: #fff; font-size: 1.05rem; letter-spacing: .02em; }
