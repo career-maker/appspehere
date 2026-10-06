@@ -1373,3 +1373,4 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .story__dots i.is-active { width: 1.6rem; background: var(--color-accent); }
 }
 @media (max-width: 860px) { .story__thumb-num { place-items: end start; padding: 0 1.2rem .8rem; font-size: 2.2rem; } }
+.solution { padding-block: clamp(4rem, 8vw, 7rem); }
