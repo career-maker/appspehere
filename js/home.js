@@ -15,7 +15,7 @@
     if (capB) capB.classList.toggle('is-hidden', v < 30);   /* little of the Before photo left: hide its label */
     if (capA) capA.classList.toggle('is-hidden', v > 70);   /* little of the After photo left: hide its label */
   }
-  setSplit(50);
+  if (tear) setSplit(50);
   if (range) range.addEventListener('input', function () { setSplit(range.value); });
 
   // Ecosystem tabs
@@ -89,6 +89,13 @@
     qi = (i + quotes.length) % quotes.length;
     quotes.forEach(function (q, k) { q.classList.toggle('is-active', k === qi); });
     dots.forEach(function (d, k) { d.setAttribute('aria-current', String(k === qi)); });
+    var who = quotes[qi].querySelector('figcaption');
+    if (who) {
+      var set = function (sel, v) { var el = document.querySelector(sel); if (el) el.textContent = v; };
+      set('[data-who-i]', who.querySelector('.avatar').textContent);
+      set('[data-who-n]', who.querySelector('strong').textContent);
+      set('[data-who-r]', who.querySelector('strong').nextElementSibling.textContent);
+    }
   }
   function stopQuotes() { if (timer) { clearInterval(timer); timer = null; } }
   document.querySelectorAll('[data-q]').forEach(function (b) {
@@ -143,7 +150,9 @@
       defaults: { ease: 'none' },
       scrollTrigger: {
         trigger: hero, start: 'top top', end: '+=' + (mobile ? 360 : 460) + '%',
-        pin: q('.hero__pin'), scrub: 0.6, anticipatePin: 1
+        pin: q('.hero__pin'), scrub: 0.5, anticipatePin: 1,
+        /* settle on a fully-shown stage instead of resting mid-fade */
+        snap: { snapTo: 'labels', duration: { min: 0.25, max: 0.7 }, delay: 0.1, ease: 'power1.inOut' }
       }
     });
 
@@ -178,6 +187,8 @@
 
     // the p2 path exists in both svgs; make sure both are drawn
     tl.to(hero.querySelectorAll('.eco__path[data-p="2"]'), { strokeDashoffset: 0, duration: 0.6 }, 3.6);
+
+    ['s0', 0, 's1', 1.1, 's2', 2.8, 's3', 3.95, 's4', 5.3, 's5', 6].forEach(function (v, i, arr) { if (i % 2 === 0) tl.addLabel(v, arr[i + 1]); });
 
     rail.forEach(function (r, k) {
       tl.to(r, mobile ? { scaleX: 1, duration: 1.3 } : { scaleY: 1, duration: 1.3 }, k * 1.3);
