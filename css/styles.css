@@ -1853,3 +1853,12 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .footer__made-l { flex-wrap: nowrap; white-space: nowrap; font-size: clamp(1.2rem, .55rem + 1.5vw, 2rem); }
   .footer__tag { flex: 1 1 auto; }
 }
+
+/* Green buttons use white text */
+.btn:not(.btn--ghost):not(.btn--primary), .cta__btn { --fg: #fff; color: #fff; }
+.btn:not(.btn--ghost):not(.btn--primary):hover { color: #fff; }
+
+/* Footer credit on the right, under the legal links */
+.footer .credit { justify-content: flex-end; }
+@media (min-width: 1100px) { .footer .credit { padding-right: 0; } }
+@media (max-width: 767px) { .footer .credit { justify-content: flex-start; padding-right: 0; } }
