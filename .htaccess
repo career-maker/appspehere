@@ -1,8 +1,5 @@
 # Source Pro B2B2C — Apache (cPanel) configuration
-Options -Indexes -MultiViews
-
-# Serve extension-less URLs (/gallery -> gallery.html) and a custom 404
-ErrorDocument 404 /404.html
+Options -Indexes
 
 # ---------- Security headers ----------
 <IfModule mod_headers.c>
@@ -21,9 +18,6 @@ ErrorDocument 404 /404.html
   Header always set Origin-Agent-Cluster "?1"
   Header always unset X-Powered-By
   Header unset Server
-</IfModule>
-<IfModule mod_security2.c>
-  SecServerSignature "Source Pro"
 </IfModule>
 ServerSignature Off
 
