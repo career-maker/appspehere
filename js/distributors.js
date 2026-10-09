@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   var TOTAL_SEATS_PER_CONSTITUENCY = 5;
 
-  var registrationPageUrl = "https://appsphereb2b.com/distributor-registration/"; /* SITE: was relative "/distributor-registration/"; absolute so it resolves outside WordPress */
+  var registrationPageUrl = "distributor-registration.html"; /* SITE: was relative "/distributor-registration/"; absolute so it resolves outside WordPress */
   var contactPageUrl = "contact.html"; /* SITE: local contact page (was relative "/contact/") */
 
   var stateNetwork = {

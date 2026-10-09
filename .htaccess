@@ -1,16 +1,31 @@
 # Source Pro B2B2C — Apache (cPanel) configuration
-Options -Indexes
+Options -Indexes -MultiViews
+
+# Serve extension-less URLs (/gallery -> gallery.html) and a custom 404
+ErrorDocument 404 /404.html
 
 # ---------- Security headers ----------
 <IfModule mod_headers.c>
-  Header always set Strict-Transport-Security "max-age=31536000"
+  Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.gtranslate.net https://translate.google.com https://translate.googleapis.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.gstatic.com https://translate.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://cdn.gtranslate.net https://translate.googleapis.com https://translate.google.com; frame-src 'self' https://www.youtube.com https://translate.google.com; media-src 'self'; manifest-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://wa.me https://api.whatsapp.com https://web.whatsapp.com https://appsphereb2b.com; frame-ancestors 'self'; upgrade-insecure-requests"
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set X-Content-Type-Options "nosniff"
-  Header always set X-XSS-Protection "1; mode=block"
+  Header always set X-XSS-Protection "0"
+  Header always set X-Permitted-Cross-Domain-Policies "none"
+  Header always set X-DNS-Prefetch-Control "off"
+  Header always set X-Download-Options "noopen"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
-  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+  Header always set Permissions-Policy "accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), usb=(), interest-cohort=()"
   Header always set Cross-Origin-Opener-Policy "same-origin-allow-popups"
+  Header always set Cross-Origin-Resource-Policy "same-site"
+  Header always set Origin-Agent-Cluster "?1"
+  Header always unset X-Powered-By
+  Header unset Server
 </IfModule>
+<IfModule mod_security2.c>
+  SecServerSignature "Source Pro"
+</IfModule>
+ServerSignature Off
 
 # ---------- Hide repository + build files ----------
 RedirectMatch 404 /\.git
