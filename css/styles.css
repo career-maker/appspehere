@@ -2103,3 +2103,9 @@ ul:has(> li > .team__ph) li > img { overflow: hidden; }
 
 /* green buttons darken on hover (white text stays readable) */
 .btn:not(.btn--ghost):not(.btn--primary):hover, .cta__btn:hover { background-color: var(--color-accent-strong); border-color: var(--color-accent-strong); color: #fff; }
+
+/* current page in the menu */
+.nav .nav__link[aria-current="page"] { color: var(--color-accent); }
+.nav .nav__link[aria-current="page"]::after { transform: scaleX(1); }
+.menu .mega__card[aria-current="page"] { border-color: var(--color-accent); background: rgba(34, 180, 92, .12); }
+.menu .mega__card[aria-current="page"] strong { color: var(--color-accent); }
