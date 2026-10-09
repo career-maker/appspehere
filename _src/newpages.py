@@ -25,10 +25,12 @@ def page(fn, title, desc, canon, crumb, h1, lead, art, body, scripts=''):
     h = re.sub(r'(<link rel="canonical" href=")[^"]*', r'\g<1>' + canon, h)
     h = re.sub(r'(<meta property="og:url" content=")[^"]*', r'\g<1>' + canon, h)
     hero = (f'<main id="main">\n  <section class="page-hero"><img class="page-hero__art" src="assets/{art}" width="784" height="754" alt="" decoding="async">'
-            f'<div class="container"><p><a href="index.html">Source Pro</a> / {crumb}</p><h1>{h1}</h1><p>{lead}</p></div></section>\n  {MARQ}\n')
+            f'<div class="container"><p><a href="index.html">Source Pro</a> / {crumb}</p><h1>{h1}</h1>{'<p>' + lead + '</p>' if lead else ''}</div></section>\n  {MARQ}\n')
     t = tail_t
     if scripts:
-        t = t.replace('<script src="js/main.js" defer></script>', '<script src="js/main.js" defer></script>\n' + scripts)
+        mm = re.search(r'<script src="js/main\.js(\?v=\w+)?" defer></script>', t)
+        v = mm.group(1) or ''
+        t = t.replace(mm.group(0), mm.group(0) + '\n' + scripts.replace('.js"', '.js' + v + '"'))
     open(fn, 'w', encoding='utf8', newline='').write(h + hero + body + '\n' + t)
     print('built', fn)
 
@@ -46,29 +48,29 @@ GAL = [
     ('gal-featured', 1024, 576, 'From a small store to a digital hypermarket'),
     ('gal-mission-vision', 1127, 1007, 'People first: building a connected, inclusive India'),
 ]
-items = ''.join(f'<button class="gal__item" type="button"><img src="assets/{n}.webp" width="{w}" height="{h}" alt="{c}" loading="lazy" decoding="async"><span>{c}</span></button>' for n, w, h, c in GAL)
+items = ''.join(f'<button class="gal__item" type="button"><img src="assets/{n}.webp" width="{w}" height="{h}" alt="{c}" loading="lazy" decoding="async"></button>' for n, w, h, c in GAL)
 lb = f'<dialog class="lb" id="lb" aria-label="Image viewer"><div class="lb__in"><img src="" alt=""><p class="lb__cap"></p></div><button class="lb__x" type="button" aria-label="Close">&times;</button><button class="lb__p" type="button" aria-label="Previous image">&#8249;</button><button class="lb__n" type="button" aria-label="Next image">&#8250;</button></dialog>'
 page('gallery.html', 'Gallery — Source Pro B2B2C', 'Visualizing the retail revolution: the people, shops and ideas behind Source Pro B2B2C.',
-     'https://appsphereb2b.com/gallery/', 'Gallery', 'Visualizing the Retail Revolution',
-     'The traditional retail story, the pressure it is under and the connected future Source Pro B2B2C is building. Select any picture to view it larger.',
+     'https://appsphereb2b.com/gallery/', 'Gallery', 'Gallery',
+     'Visualizing the Retail Revolution',
      'partners-handshake.webp', f'<section class="section"><div class="container"><div class="gal">{items}</div></div></section>\n  {lb}',
      '<script src="js/gallery.js" defer></script>')
 
 # ---------------- retail reality ----------------
 rr = json.load(open(os.environ['TEMP'] + '/live/rr.json', encoding='utf8'))
-cards = ''.join(f'<a class="rr__card" href="{c["href"]}" target="_blank" rel="noopener"><span class="rr__src">{c["src"]}</span><h3>{c["title"]}</h3><p>{c["desc"]}</p><span class="rr__go">Read article {EXT}</span></a>' for c in rr)
+cards = ''.join(f'<a class="rr__card" href="{c["href"]}" target="_blank" rel="noopener"><span class="rr__src">{c["src"]}</span><h3>{c["title"]}</h3><p>{c["desc"]}</p><span class="rr__go">Read Article →</span></a>' for c in rr)
 page('retail-reality.html', 'Retail Reality — Source Pro B2B2C', 'Media coverage on the challenges faced by India’s traditional retailers, distributors and small businesses.',
      'https://appsphereb2b.com/retail-reality/', 'Retail Reality', 'Retail Reality',
-     'A curated collection of mainstream media reports on the challenges facing traditional retailers, distributors and small businesses.',
+     '',
      'problem-store.webp',
-     f'<section class="section"><div class="container"><p class="rr-note">These links are shared only for public awareness and industry context. All copyrights belong to the respective publishers.</p><div class="rr">{cards}</div></div></section>')
+     f'<section class="section"><div class="container"><div class="section-head"><h2>Media Coverage</h2><p>A curated collection of mainstream media reports highlighting the challenges faced by traditional retailers, distributors, and small businesses. These links are shared only for public awareness and industry context. All copyrights belong to the respective publishers.</p></div><div class="rr">{cards}</div><p class="rr-note" style="margin-top:2.5rem">The articles linked on this page are published by independent third-party media organisations. They are shared only for educational, public-awareness, and industry-context purposes. App Sphere B2B India Private Limited does not claim ownership of the content, images, headlines, or trademarks of the respective publishers. If any publisher wishes a link to be removed, we will do so promptly upon request.</p></div></section>')
 
 # ---------------- news ----------------
 page('news.html', 'News — Source Pro B2B2C', 'News and reports on how Source Pro B2B2C is empowering India’s traditional retail ecosystem.',
-     'https://appsphereb2b.com/news/', 'News', 'Media Coverage',
-     'News and reports highlighting how Source Pro B2B2C is transforming and empowering India’s traditional retail ecosystem.',
+     'https://appsphereb2b.com/news/', 'News', 'News',
+     '',
      'cta-handshake.webp',
-     f'<section class="section"><div class="container"><article class="news-feature"><img src="assets/gal-what-we-are.webp" width="1373" height="1173" alt="" loading="lazy" decoding="async"><div><span class="rr__src">Dhanam Online</span><h2>SourcePro B2B: Kerala Startup Brings Digital Power to Small Retailers</h2><p>An in-depth feature by Dhanam Online highlighting how SourcePro B2B is equipping traditional small retailers and neighbourhood shops with robust digital tools to compete effectively in a rapidly evolving commerce landscape.</p><a class="btn" href="https://dhanamonline.com/business-kerala/sourcepro-b2b-kerala-startup-brings-digital-power-to-small-retailers-rrn" target="_blank" rel="noopener">Read full article {ARR}</a></div></article></div></section>')
+     f'<section class="section"><div class="container"><div class="section-head"><h2>Media Coverage</h2><p>News and reports highlighting how Source Pro B2B2C is transforming and empowering India\'s traditional retail ecosystem.</p></div><article class="news-feature"><img src="assets/gal-what-we-are.webp" width="1373" height="1173" alt="" loading="lazy" decoding="async"><div><span class="rr__src">Dhanam Online</span><h2>SourcePro B2B: Kerala Startup Brings Digital Power to Small Retailers</h2><p>An in-depth feature by Dhanam Online highlighting how SourcePro B2B is equipping traditional small retailers and neighborhood shops with robust digital tools to compete effectively in a rapidly evolving commerce landscape.</p><a class="btn" href="https://dhanamonline.com/business-kerala/sourcepro-b2b-kerala-startup-brings-digital-power-to-small-retailers-rrn" target="_blank" rel="noopener">Read Full Article →</a></div></article></div></section>')
 
 # ---------------- customer experience ----------------
 steps = [('They discover your shop is now digital', 'You contact your existing customers directly through WhatsApp, a shop display, a QR code, social media or word of mouth. They hear about your digital shop from you, not from an algorithm.'),
@@ -113,15 +115,11 @@ page('customer-experience.html', 'Customer Experience — Source Pro B2B2C', 'Se
      'customer-experience-hero.webp', cx)
 
 # ---------------- downloadables ----------------
-docs = [('B2B2C Mudra Project Report', 'A ready project report distributors can take to their bank when applying for Mudra loan working-capital support.', 'assets/docs/SPB2B2C_Mudra_-Project-Report.pdf', '', ''),
-        ('5 Year Financial Projections', 'Five-year financial projections for a Source Pro distribution business, to accompany the project report.', 'assets/docs/SPB2B2C_MUDRA_5Y_Fin_Projections.pdf', '', ''),
-        ('Source Pro B2B2C e-book', 'The complete Source Pro B2B2C story and programme guide (large PDF, opens on the main site).', 'https://appsphereb2b.com/wp-content/uploads/2026/06/Source-Pro-B2B2C-e-book.pdf', ' target="_blank" rel="noopener"', '')]
-dl = ''.join(f'<div class="dl__card"><span class="dl__ico">{DOC}</span><h3>{t}</h3><p>{d}</p><a class="btn" href="{u}"{x}>Download PDF {ARR}</a></div>' for t, d, u, x, _ in docs)
+dl = ''.join(f'<div class="dl__card"><span class="dl__ico">{DOC}</span><h3>{t}</h3><a class="btn" href="{u}">Download PDF {ARR}</a></div>' for t, u in [('B2B2C Mudra Project Report', 'assets/docs/SPB2B2C_Mudra_-Project-Report.pdf'), ('5 Year Financial Projections', 'assets/docs/SPB2B2C_MUDRA_5Y_Fin_Projections.pdf')])
 page('downloadables.html', 'Downloadables — Source Pro B2B2C', 'Distributor resources: Mudra loan project report and financial projections for Source Pro distributors.',
-     'https://appsphereb2b.com/distributor-resources/', 'Downloadables', 'Distributor Resources',
-     'Distributor finance support: documents prospective Source Pro distributors can use when approaching their bank for working-capital assistance.',
+     'https://appsphereb2b.com/distributor-resources/', 'Downloadables', 'Distributor Resources', '',
      'distributor-warehouse.webp',
-     f'<section class="section"><div class="container"><div class="section-head"><p>Distributor finance support</p><h2>Starting a distribution business with confidence.</h2><p>Starting a distribution business may require working capital support. To assist prospective Source Pro distributors, we have made available a downloadable Mudra Loan project report and financial projections. Loan approval is subject to eligibility criteria and the discretion of the concerned bank.</p></div><div class="dl">{dl}</div></div></section>')
+     f'<section class="section"><div class="container"><div class="section-head"><h2>Distributor Finance Support</h2><p>Starting a distribution business may require working capital support. To assist prospective Source Pro distributors, we have made available a downloadable Mudra Loan project report and financial projections.</p><p>Distributors may use these documents while approaching their respective banks for financial assistance. Loan approval will be subject to the eligibility criteria and the discretion of the concerned bank.</p></div><div class="dl">{dl}</div></div></section>')
 
 # ---------------- careers ----------------
 page('career.html', 'Careers — Source Pro B2B2C', 'Build inclusive digital commerce with App Sphere B2B India Pvt. Ltd.',
@@ -135,7 +133,7 @@ page('awards.html', 'Awards & Recognitions — Source Pro B2B2C', 'Press recogni
      'https://appsphereb2b.com/awards-recognitions/', 'Awards &amp; Recognitions', 'Awards &amp; Recognitions',
      'Recognition from the press and the retail community for Source Pro B2B2C.',
      'ecosystem-india.webp',
-     f'<section class="section"><div class="container"><article class="news-feature"><img src="assets/gal-mission-vision.webp" width="1127" height="1007" alt="" loading="lazy" decoding="async"><div><span class="rr__src">In the press</span><h2>Featured by Dhanam Online</h2><p>SourcePro B2B was profiled as a Kerala startup bringing digital power to small retailers. More awards and recognitions will be listed here as they are announced.</p><a class="btn" href="news.html">See media coverage {ARR}</a></div></article></div></section>')
+     f'<section class="section"><div class="container"><div class="section-head"><h2>Media Coverage</h2><p>News and reports highlighting how Source Pro B2B2C is transforming and empowering India\'s traditional retail ecosystem.</p></div><article class="news-feature"><img src="assets/gal-mission-vision.webp" width="1127" height="1007" alt="" loading="lazy" decoding="async"><div><span class="rr__src">In the press</span><h2>Featured by Dhanam Online</h2><p>SourcePro B2B was profiled as a Kerala startup bringing digital power to small retailers. More awards and recognitions will be listed here as they are announced.</p><a class="btn" href="news.html">See media coverage {ARR}</a></div></article></div></section>')
 
 # ---------------- 404 ----------------
 page('404.html', 'Page not found — Source Pro B2B2C', 'The page you are looking for could not be found.', 'https://appsphereb2b.com/', 'Not found', 'Page not found',

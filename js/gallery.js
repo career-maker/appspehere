@@ -8,7 +8,7 @@
     cur = (i + items.length) % items.length;
     var it = items[cur].querySelector('img');
     img.src = it.currentSrc || it.src; img.alt = it.alt;
-    cap.textContent = items[cur].querySelector('span').textContent;
+    cap.textContent = it.alt;
   }
   items.forEach(function (b, i) { b.addEventListener('click', function () { show(i); lb.showModal(); }); });
   lb.querySelector('.lb__x').addEventListener('click', function () { lb.close(); });
