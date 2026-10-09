@@ -147,7 +147,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   }
   .nav.is-open { opacity: 1; transform: none; visibility: visible; }
   .nav > ul { flex-direction: column; align-items: stretch; }
-  .nav a.nav__link, .nav button.nav__link { font-size: 1.25rem; padding: .85rem .5rem; border-radius: 10px; width: 100%; justify-content: space-between; }
+  .nav a.nav__link, .nav button.nav__link { font-size: 1.25rem; padding: .85rem 0; border-radius: 10px; width: 100%; justify-content: space-between; }
   .menu { position: static; opacity: 1; visibility: visible; transform: none; display: none; background: none; border: 0; box-shadow: none; padding: 0 0 .5rem 1rem; }
   .has-menu.is-open .menu { display: block; }
   .nav .btn { width: 100%; }
@@ -1174,7 +1174,7 @@ ul:has(> li > .team__ph) span { color: var(--color-muted); }
 .menu a { transition: background var(--t-fast), padding-left var(--t-med) var(--ease); }
 .menu a:hover { padding-left: 1.1rem; }
 .nav .btn:hover { transform: translateY(-2px); }
-@media (max-width: 1180px) { .nav a.nav__link::after, .nav button.nav__link::after { left: .5rem; right: auto; width: 2rem; bottom: .55rem; } }
+@media (max-width: 1180px) { .nav a.nav__link::after, .nav button.nav__link::after { left: 0; right: auto; width: 2rem; bottom: .55rem; } }
 @media (prefers-reduced-motion: reduce) { .nav a.nav__link:hover, .nav button.nav__link:hover { transform: none; } }
 /* v9.1: captions live outside the clipped pane, so they never move with the slider */
 .tear__tags { position: absolute; inset: 0; z-index: 4; pointer-events: none; }
@@ -1267,7 +1267,8 @@ ul:has(> li > .team__ph) span { color: var(--color-muted); }
 .footer .brand__plate img { height: 3.5rem; }
 @media (max-width: 1360px) { .brand__plate img { height: 40px; } }
 @media (max-width: 767px) { .brand__plate img { height: 40px; } .stage { left: var(--gutter); right: var(--gutter); } .layer--store { right: auto; } }
-@media (min-width: 768px) and (max-width: 1099px) { .layer--store { right: auto; } .stage { left: var(--gutter); right: var(--gutter); } }
+@media (min-width: 768px) and (max-width: 1099px) and (orientation: portrait) { .layer--store { right: auto; } }
+@media (min-width: 768px) and (max-width: 1099px) { .stage { left: var(--gutter); right: var(--gutter); } }
 
 /* ===== v14: ecosystem reveal ===== */
 .eco-section { overflow: hidden; }
@@ -2077,3 +2078,28 @@ ul:has(> li > .team__ph) li > img { overflow: hidden; }
 .sp-form-section > h2 + p { margin: .75rem 0 1.5rem; color: var(--color-muted); }
 .mega__card img { aspect-ratio: 2 / 1; }
 @media (max-width: 1180px) { .mega__card img { aspect-ratio: 1; } }
+
+/* testimonial photo changes with the quote */
+.testi__photo img { position: absolute; inset: 0; opacity: 0; transform: none; transition: opacity .7s var(--ease); }
+.testi__photo img.is-active { opacity: 1; }
+
+/* ===== button hover: fill colour is independent of the text colour, so text never vanishes ===== */
+.btn--ghost { --wipe: var(--color-secondary); background-image: linear-gradient(var(--wipe), var(--wipe)); }
+.on-ink .btn--ghost, .hero .btn--ghost, .page-hero .btn--ghost, .widget--cta .btn--ghost, .footer .btn--ghost, .header .btn--ghost { --wipe: #fff; }
+@media (hover: hover) {
+  .btn--ghost:hover { color: #fff; border-color: var(--wipe); background-image: linear-gradient(var(--wipe), var(--wipe)); background-size: 100% 100%; background-color: transparent; }
+  .on-ink .btn--ghost:hover, .hero .btn--ghost:hover, .page-hero .btn--ghost:hover, .widget--cta .btn--ghost:hover, .footer .btn--ghost:hover, .header .btn--ghost:hover { color: var(--color-secondary); }
+}
+.btn--ghost:focus-visible { background-size: 100% 100%; color: #fff; }
+.on-ink .btn--ghost:focus-visible, .hero .btn--ghost:focus-visible, .page-hero .btn--ghost:focus-visible, .widget--cta .btn--ghost:focus-visible { color: var(--color-secondary); }
+
+/* forms: space between the last field and the submit button */
+.sp-form-grid + .sp-submit-btn, .sp-form-grid ~ p + .sp-submit-btn, .sp-form-section > .sp-submit-btn { margin-top: 2rem; }
+
+/* legal contents: no scrollbar chrome inside the sticky panel */
+.legal__toc { scrollbar-width: none; }
+.legal__toc::-webkit-scrollbar { display: none; }
+.legal__tocbox a { padding-block: .3rem; min-height: 32px; }
+
+/* green buttons darken on hover (white text stays readable) */
+.btn:not(.btn--ghost):not(.btn--primary):hover, .cta__btn:hover { background-color: var(--color-accent-strong); border-color: var(--color-accent-strong); color: #fff; }

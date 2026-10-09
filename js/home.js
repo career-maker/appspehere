@@ -84,11 +84,13 @@
   // Testimonials
   var quotes = Array.prototype.slice.call(document.querySelectorAll('.quote'));
   var dots = Array.prototype.slice.call(document.querySelectorAll('.dots button'));
+  var photos = Array.prototype.slice.call(document.querySelectorAll('.testi__photo img'));
   var qi = 0, timer = null;
   function showQuote(i) {
     qi = (i + quotes.length) % quotes.length;
     quotes.forEach(function (q, k) { q.classList.toggle('is-active', k === qi); });
     dots.forEach(function (d, k) { d.setAttribute('aria-current', String(k === qi)); });
+    photos.forEach(function (p, k) { p.classList.toggle('is-active', k === qi); });
     var who = quotes[qi].querySelector('figcaption');
     if (who) {
       var set = function (sel, v) { var el = document.querySelector(sel); if (el) el.textContent = v; };
