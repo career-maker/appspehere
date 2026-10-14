@@ -9,7 +9,7 @@ CONTACT_BLOCK = [
 TERMS = {
     "file": "terms-of-use.html", "title": "Terms of Use", "canon": "https://appsphereb2b.com/terms-of-use/",
     "desc": "Terms of Use for the Source Pro B2B2C website and platform, operated by App Sphere B2B India Private Limited.",
-    "meta": [("Effective date", "01/01/2026"), ("Website", "appsphereb2b.com"), ("Platform", "Source Pro B2B2C"), ("Company", "App Sphere B2B India Private Limited")],
+    "meta": [("Effective date", "01/01/2026"), ("Website", "appsphereb2b.com"), ("Platform", "Source Pro B2B2C"), ("Company", "App Sphere B2B India Private Limited"), ("Registered office", "CSP XXI/271-F, 1st Floor, Emmanuel George Memorial Building, Champakkad Junction, Arthunkal P.O., Cherthala, Alappuzha, Kerala – 688530, India"), ("Email", "info@appsphereb2b.com / info@sourceprob2b.co.in"), ("Phone", "+91 97784 52007 / +91 4782 572486")],
     "intro": [
         "Welcome to the official website of Source Pro B2B2C, operated by App Sphere B2B India Private Limited. By accessing, browsing, submitting information through, downloading from, or using this website, mobile application, enquiry forms, digital platform, dashboards, communication channels, or related services, you agree to comply with these Terms of Use.",
         "If you do not agree with these Terms, please do not use this website or submit any information through it.",
@@ -75,7 +75,7 @@ TERMS = {
 PRIVACY = {
     "file": "privacy-policy.html", "title": "Privacy Policy", "canon": "https://appsphereb2b.com/privacy-policy/",
     "desc": "How Source Pro B2B2C collects, uses, shares and protects personal information.",
-    "meta": [("Effective date", "01/01/2026"), ("Website", "appsphereb2b.com"), ("Platform", "Source Pro B2B2C"), ("Company", "App Sphere B2B India Private Limited")],
+    "meta": [("Effective date", "01/01/2026"), ("Website", "appsphereb2b.com"), ("Platform", "Source Pro B2B2C"), ("Company", "App Sphere B2B India Private Limited"), ("Registered office", "CSP XXI/271-F, 1st Floor, Emmanuel George Memorial Building, Champakkad Junction, Arthunkal P.O., Cherthala, Alappuzha, Kerala – 688530, India"), ("Email", "info@appsphereb2b.com / info@sourceprob2b.co.in"), ("Phone", "+91 97784 52007 / +91 4782 572486")],
     "intro": [
         "At Source Pro B2B2C, we respect your privacy and are committed to protecting the personal information shared with us through our website, mobile application, enquiry forms, business onboarding process, customer support channels, and related services.",
         "This Privacy Policy explains what information we collect, why we collect it, how we use it, how we protect it, and the choices available to you.",
@@ -145,7 +145,7 @@ PRIVACY = {
 DISCLAIMER = {
     "file": "disclaimer.html", "title": "Disclaimer", "canon": "https://appsphereb2b.com/disclaimer/",
     "desc": "Disclaimer for the Source Pro B2B2C website and platform.",
-    "meta": [("Website", "appsphereb2b.com"), ("Platform", "Source Pro B2B2C"), ("Company", "App Sphere B2B India Private Limited")],
+    "meta": [("Website", "appsphereb2b.com"), ("Platform", "Source Pro B2B2C"), ("Company", "App Sphere B2B India Private Limited"), ("Registered office", "CSP XXI/271-F, 1st Floor, Emmanuel George Memorial Building, Champakkad Junction, Arthunkal P.O., Cherthala, Alappuzha, Kerala – 688530, India"), ("Email", "info@appsphereb2b.com / info@sourceprob2b.co.in"), ("Phone", "+91 97784 52007 / +91 4782 572486")],
     "intro": [
         "The information provided on this website is for general informational, business communication, platform awareness, and stakeholder engagement purposes only.",
         "While App Sphere B2B India Private Limited makes reasonable efforts to ensure that the information displayed on this website is accurate and updated, we do not make any express or implied representation, warranty, guarantee, or assurance regarding the completeness, accuracy, reliability, suitability, availability, performance, outcome, profitability, or future results of any information, service, business opportunity, platform feature, projection, or statement provided herein.",
@@ -186,7 +186,7 @@ DISCLAIMER = {
 COPYRIGHT = {
     "file": "copyright-notice.html", "title": "Copyright Notice", "canon": "https://appsphereb2b.com/copyright-notice/",
     "desc": "Copyright Notice for Source Pro B2B2C — © 2026 App Sphere B2B India Private Limited. All Rights Reserved.",
-    "meta": [("Website", "appsphereb2b.com"), ("Platform", "Source Pro B2B2C"), ("Company", "App Sphere B2B India Private Limited")],
+    "meta": [("Website", "appsphereb2b.com"), ("Platform", "Source Pro B2B2C"), ("Company", "App Sphere B2B India Private Limited"), ("Registered office", "CSP XXI/271-F, 1st Floor, Emmanuel George Memorial Building, Champakkad Junction, Arthunkal P.O., Cherthala, Alappuzha, Kerala – 688530, India"), ("Email", "info@appsphereb2b.com / info@sourceprob2b.co.in"), ("Phone", "+91 97784 52007 / +91 4782 572486")],
     "intro": ["Copyright © 2026 App Sphere B2B India Private Limited. All Rights Reserved."],
     "sections": [
         ("Ownership of content", [

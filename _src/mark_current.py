@@ -10,6 +10,9 @@ for f in glob.glob('*.html'):
     h = s[a:b].replace(' aria-current="page"', '')
     if f in direct:
         h = re.sub(r'(<a class="nav__link" href="%s")\s*>' % re.escape(f), r' aria-current="page">', h, count=1)
+    if f == 'about.html':
+        b0 = h.index('<button class="nav__link"')
+        h = h[:b0] + '<button class="nav__link" aria-current="page"' + h[b0 + len('<button class="nav__link"'):]
     if f in part or f in res:
         idx = 0 if f in part else 1
         page = f if f in part else res[f]

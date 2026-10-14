@@ -9,6 +9,7 @@
       w.classList.toggle('has-error', !!msg); e.textContent = msg || ''; el.toggleAttribute('aria-invalid', !!msg);
     }
     function check(el) {
+      if (el.type === 'file' && el.files[0] && el.files[0].size > 5 * 1024 * 1024) { err(el, 'File must be 5 MB or smaller.'); return false; }
       if (el.checkValidity()) { err(el, ''); return true; }
       err(el, el.validity.valueMissing ? 'This field is required.' : 'Enter a valid ' + (el.type === 'email' ? 'email address.' : el.type === 'tel' ? 'mobile number.' : 'value.'));
       return false;
@@ -27,8 +28,9 @@
       }
       var lines = fields.map(function (el) {
         var l = f.querySelector('label[for="' + el.id + '"]');
-        return el.value.trim() && l ? l.textContent.replace('*', '').trim() + ': ' + el.value.trim() : '';
+        return el.type !== 'file' && el.value.trim() && l ? l.textContent.replace('*', '').trim() + ': ' + el.value.trim() : '';
       }).filter(Boolean);
+      // TODO(backend): POST new FormData(f) (multipart, includes file inputs) to the enquiry endpoint; WhatsApp can't carry files.
       var text = f.getAttribute('data-wa') + '\n' + lines.join('\n');
       st.className = 'sp-status sp-status--success is-visible';
       st.textContent = 'Opening WhatsApp with your details…';

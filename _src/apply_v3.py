@@ -134,9 +134,9 @@ def add_bg(m):
 idx = re.sub(r'<button class="step" type="button" aria-expanded="(?:true|false)" aria-controls="s\d">', add_bg, idx)
 # app: backdrop photo
 idx = idx.replace('<div class="devices" role="img"', '<div class="devices" role="img"')
-idx = idx.replace('<div class="phone phone--a"', '<img class="devices__bg" src="assets/digital-hypermarket.webp" width="1400" height="1120" alt="" loading="lazy" decoding="async">\n      <div class="phone phone--a"', 1)
+idx = idx.replace('<div class="phone phone--a"', '<img class="devices__bg" src="assets/digital-hypermarket.webp" width="1400" height="1120" alt="Digital hypermarket for local stores" loading="lazy" decoding="async">\n      <div class="phone phone--a"', 1)
 # cta backdrop
-idx = idx.replace('id="cta" aria-labelledby="cta-h" style="padding-top:0">\n  <div class="container">', 'id="cta" aria-labelledby="cta-h" style="padding-top:0">\n  <img class="cta__bg" src="assets/partners-handshake.webp" width="784" height="754" alt="" loading="lazy" decoding="async">\n  <div class="container">')
+idx = idx.replace('id="cta" aria-labelledby="cta-h" style="padding-top:0">\n  <div class="container">', 'id="cta" aria-labelledby="cta-h" style="padding-top:0">\n  <img class="cta__bg" src="assets/partners-handshake.webp" width="784" height="754" alt="Partners shaking hands" loading="lazy" decoding="async">\n  <div class="container">')
 wr("_src/index.src.html", idx)
 
 # ---------- 4. css ----------

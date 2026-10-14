@@ -66,11 +66,11 @@ def idx(s):
         fig = '\n          <figure class="role-fig"><img src="assets/%s.webp" width="%d" height="%d" alt="%s" loading="lazy" decoding="async"></figure>' % (f, w, h, alt)
         s = pat.sub(lambda m: m.group(1) + fig + m.group(2), s, count=1)
     s = s.replace('id="philosophy" aria-labelledby="phil-h">\n  <div class="container">',
-                  'id="philosophy" aria-labelledby="phil-h">\n  <img class="philosophy__bg" src="assets/ecosystem-india.webp" width="1600" height="900" alt="" loading="lazy" decoding="async">\n  <div class="container">')
+                  'id="philosophy" aria-labelledby="phil-h">\n  <img class="philosophy__bg" src="assets/ecosystem-india.webp" width="1600" height="900" alt="India's trade ecosystem connected by SourcePro B2B" loading="lazy" decoding="async">\n  <div class="container">')
     s = s.replace('<a class="link-card" href="distributors.html"><div>',
-                  '<a class="link-card" href="distributors.html"><img class="link-card__img" src="assets/partners-handshake.webp" width="784" height="754" alt="" loading="lazy" decoding="async"><div>')
+                  '<a class="link-card" href="distributors.html"><img class="link-card__img" src="assets/partners-handshake.webp" width="784" height="754" alt="Partners shaking hands" loading="lazy" decoding="async"><div>')
     s = s.replace('<a class="link-card" href="partner-infrastructure.html"><div>',
-                  '<a class="link-card" href="partner-infrastructure.html"><img class="link-card__img" src="assets/distributor-warehouse.webp" width="784" height="754" alt="" loading="lazy" decoding="async"><div>')
+                  '<a class="link-card" href="partner-infrastructure.html"><img class="link-card__img" src="assets/distributor-warehouse.webp" width="784" height="754" alt="Distributor warehouse" loading="lazy" decoding="async"><div>')
     return s
 
 
@@ -80,9 +80,9 @@ rw("_src/index.src.html", idx)
 def bld(s):
     s = re.sub(r'<link rel="icon" href="data:[^"]*">', '<link rel="icon" href="assets/favicon.png" type="image/png">', s)
     s = s.replace('<section class="page-hero">\n    <div class="container">\n      <p class="crumbs"><a href="index.html">Source Pro</a> / Partnership</p>',
-                  '<section class="page-hero">\n    <img class="page-hero__art" src="assets/distributor-warehouse.webp" width="784" height="754" alt="" decoding="async">\n    <div class="container">\n      <p class="crumbs"><a href="index.html">Source Pro</a> / Partnership</p>')
+                  '<section class="page-hero">\n    <img class="page-hero__art" src="assets/distributor-warehouse.webp" width="784" height="754" alt="Distributor warehouse" decoding="async">\n    <div class="container">\n      <p class="crumbs"><a href="index.html">Source Pro</a> / Partnership</p>')
     s = s.replace('<section class="page-hero">\n    <div class="container">\n      <p class="crumbs"><a href="index.html">Source Pro</a> / Distributor network</p>',
-                  '<section class="page-hero">\n    <img class="page-hero__art" src="assets/partners-handshake.webp" width="784" height="754" alt="" decoding="async">\n    <div class="container">\n      <p class="crumbs"><a href="index.html">Source Pro</a> / Distributor network</p>')
+                  '<section class="page-hero">\n    <img class="page-hero__art" src="assets/partners-handshake.webp" width="784" height="754" alt="Partners shaking hands" decoding="async">\n    <div class="container">\n      <p class="crumbs"><a href="index.html">Source Pro</a> / Distributor network</p>')
     return s
 
 

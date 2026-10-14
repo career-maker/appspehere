@@ -36,8 +36,6 @@ HEAD = """<!doctype html>
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{canon}">
 <link rel="icon" href="assets/favicon.png" type="image/png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,600;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -58,7 +56,7 @@ infra = HEAD.format(
     canon="https://appsphereb2b.com/infrastructure-partner/") + header("", infra=True) + """
 <main id="main">
   <section class="page-hero">
-    <img class="page-hero__art" src="assets/distributor-warehouse.webp" width="784" height="754" alt="" decoding="async">
+    <img class="page-hero__art" src="assets/distributor-warehouse.webp" width="784" height="754" alt="Distributor warehouse" decoding="async">
     <div class="container">
       <p class="crumbs"><a href="index.html">Source Pro</a> / Partnership</p>
       <h1>Partner With Source Pro B2B2C</h1>
@@ -98,7 +96,7 @@ dist = HEAD.format(
     canon="https://appsphereb2b.com/meet-our-distributors/") + header("", dist=True) + """
 <main id="main">
   <section class="page-hero">
-    <img class="page-hero__art" src="assets/partners-handshake.webp" width="784" height="754" alt="" decoding="async">
+    <img class="page-hero__art" src="assets/partners-handshake.webp" width="784" height="754" alt="Partners shaking hands" decoding="async">
     <div class="container">
       <p class="crumbs"><a href="index.html">Source Pro</a> / Distributor network</p>
       <h1>Meet Our Local Distribution Partners</h1>

@@ -80,18 +80,22 @@ def form(prefix, title, wa, fields, button, note=''):
         if kind == 'select':
             o = f'<option value="">{e(ph)}</option>' + ''.join(f'<option>{e(x)}</option>' for x in opts)
             ctl = f'<select id="{i}" name="{i}"{r}>{o}</select>'
+        elif kind == 'file':
+            ctl = (f'<input id="{i}" name="{i}" type="file" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"{r} aria-describedby="{i}h">'
+                   f'<small id="{i}h" class="sp-help">{e(opts)} PDF, JPG, PNG or DOC, up to 5 MB.</small>')
         elif kind == 'textarea':
             ctl = f'<textarea id="{i}" name="{i}" rows="4" placeholder="{e(ph)}"{r}></textarea>'
         else:
             ctl = f'<input id="{i}" name="{i}" type="{kind}" placeholder="{e(ph)}"{r}>'
-        full = ' sp-full' if kind == 'textarea' else ''
+        full = ' sp-full' if kind in ('textarea', 'file') else ''
         out.append(f'<div class="sp-field{full}"><label for="{i}">{e(label)}{star}</label>{ctl}</div>')
-    return (f'<form class="sp-infra-form" data-wa="{e(wa)}" novalidate><div class="sp-form-section"><h2>{e(title)}</h2>{note}'
+    return (f'<form class="sp-infra-form" data-wa="{e(wa)}" enctype="multipart/form-data" novalidate><div class="sp-form-section"><h2>{e(title)}</h2>{note}'
             f'<div class="sp-status" role="alert" tabindex="-1"></div><div class="sp-form-grid">{"".join(out)}</div>'
             f'<button type="submit" class="sp-submit-btn">{e(button)}</button></div></form>')
 
 
 F = lambda *a: a  # readability
+FORM_ART = '<figure class="form-art"><img src="assets/contact-form.webp" width="784" height="754" alt="A Source Pro team member discussing partnership with a visitor" loading="lazy" decoding="async"></figure>'
 
 
 RETAIL_FIELDS = [
@@ -111,6 +115,7 @@ RETAIL_FIELDS = [
     ('select', 'Years in Retail Business', 'Select years in business', True, ['Less than 1 Year', '1-2 Years', '3-5 Years', '6-10 Years', '11-20 Years', 'More than 20 Years']),
     ('select', 'Select storage capacity', 'Storage Space', True, ['Less than 50 Sq Ft', '50-100 Sq Ft', '100-200 Sq Ft', '200-500 Sq Ft', '500-1000 Sq Ft', 'More than 1000 Sq Ft']),
     ('select', 'Interested in Loan Assistance?', 'Select an option', False, ['Yes', 'No', 'Maybe - Need More Information']),
+    ('file', 'Business Verification Document (Optional)', '', False, 'Upload any one of the following: GST Certificate, Trade License, Shop & Establishment Certificate, Business PAN, Visiting Card, or any other supporting business document.'),
 ]
 DIST_FIELDS = [
     ('text', 'Name of Proprietor / Director / Partner', 'Enter proprietor/director/partner name', True, None),
@@ -130,6 +135,7 @@ DIST_FIELDS = [
     ('select', 'Number of Employees', 'Select number of employees', False, ['1-5', '6-10', '11-25', '26-50', '51-100', '100+']),
     ('select', 'Previous Financial Year Turnover', 'Select annual turnover', False, ['Below ₹10 Lakhs', '₹10 Lakhs - ₹25 Lakhs', '₹25 Lakhs - ₹50 Lakhs', '₹50 Lakhs - ₹1 Crore', '₹1 Crore - ₹5 Crore', 'Above ₹5 Crore']),
     ('number', 'Number of Goods Vehicles', 'Enter number of vehicles', False, None),
+    ('file', 'Upload Supporting Business Document (Optional)', '', False, 'Upload any relevant business document such as GST Certificate, Trade License, Shop Registration, Business PAN, Visiting Card, Company Profile, or any other supporting document.'),
     ('textarea', 'Questions or Comments', 'Enter your message', False, None),
 ]
 MANU_FIELDS = [
@@ -151,6 +157,7 @@ MANU_FIELDS = [
     ('select', 'Number of Years in Operation', 'Select years in operation', True, ['Less than 1 Year', '1-2 Years', '3-5 Years', '6-10 Years', '11-20 Years', 'More than 20 Years']),
     ('select', 'Number of SKUs', 'Select SKU range', True, ['1-50', '51-100', '101-250', '251-500', '501-1000', '1000+']),
     ('text', 'Monthly Production Capacity', 'Enter monthly production capacity', False, None),
+    ('file', 'Business Verification Document', '', False, 'Upload any relevant business document such as GST Certificate, Factory License, UDYAM/MSME Certificate, Company PAN, Product Catalogue, Company Profile, or any other supporting document.'),
 ]
 
 
@@ -224,8 +231,8 @@ def retailer():
           f'<div><h3>What Changes</h3>{ticks(changes)}</div><div><h3>What Stays the Same</h3>{ticks(stays)}</div></div></div></section>\n  ')
     m += (f'<section class="section"><div class="container"><div class="section-head"><h2>RETAILER HIGHLIGHTS</h2></div><div class="hl">'
           f'<div><h3>Customers Merit</h3>{ticks(merit)}</div><div><h3>Retailers Benefit</h3>{ticks(benef)}</div></div></div></section>\n  ')
-    m += (f'<section class="form-wrap" id="register"><div class="container">'
-          + form('r', 'Register with Us', 'Hello Source Pro, I would like to register my retail shop.', RETAIL_FIELDS, 'Submit Enquiry') + '</div></section>\n  ')
+    m += (f'<section class="form-wrap" id="register"><div class="container form-split">'
+          + form('r', 'Register with Us', 'Hello Source Pro, I would like to register my retail shop.', RETAIL_FIELDS, 'Submit Enquiry') + FORM_ART + '</div></section>\n  ')
     m += faq_block(L, 'retailers')
     swap_main('retailer-partnership.html', m, 'js/reg-form.js')
 
@@ -282,11 +289,13 @@ def distributor():
     m += (f'<section class="section"><div class="container"><div class="section-head"><h2>Your Journey as a Source Pro B2B2C Distributor — 3 Phases to Full Operation</h2><p>{e(j_intro)}</p></div>'
           f'<div class="phases">{phase(1, "Platform Demonstration & Initial Evaluation", ph1)}{phase(2, "Platform Fee Payment & Territory Finalisation", ph2)}{phase(3, "MoU Execution & Security Deposit", ph3)}</div>'
           f'<p style="margin-top:2rem">{btn("#register", "Enquire Now")}</p></div></section>\n  ')
-    m += (f'<section class="section on-ink"><div class="container two"><div><h2>How the Distributor Model Works</h2><ol>{"".join(f"<li><span>{i + 1}</span>{e(t)}</li>" for i, (_, t) in enumerate(how))}</ol></div>'
-          f'<div><h2>Why This Model Is Attractive for Distributors</h2>{ticks([t for _, t in why])}</div></div></section>\n  ')
+    m += (f'<section class="section"><div class="container split split--img"><figure class="figure-card"><img src="assets/distributor-model.webp" width="784" height="754" alt="Distributors shaking hands in a retail warehouse aisle" loading="lazy" decoding="async"></figure>'
+          f'<div><h2>How the Distributor Model Works</h2><ol>{"".join(f"<li><span>{i + 1}</span>{e(t)}</li>" for i, (_, t) in enumerate(how))}</ol></div></div></section>\n  ')
+    m += (f'<section class="section on-ink"><div class="container"><div class="section-head"><h2>Why This Model Is Attractive for Distributors</h2></div>'
+          + ticks([t for _, t in why]).replace('<ul>', '<ul class="attract">', 1) + '</div></section>\n  ')
     m += (f'<section class="section"><div class="container"><div class="section-head"><h2>Traditional Distributor vs Source Pro B2B2C Distributor</h2></div>'
           + table(pairs, ['Traditional Distribution', 'Source Pro B2B2C Distribution']) + '</div></section>\n  ')
-    m += (f'<section class="form-wrap" id="register"><div class="container">' + form('d', 'Register with Us', 'Hello Source Pro, I would like to apply as a distributor.', DIST_FIELDS, 'Register Interest') + '</div></section>\n  ')
+    m += (f'<section class="form-wrap" id="register"><div class="container form-split">' + form('d', 'Register with Us', 'Hello Source Pro, I would like to apply as a distributor.', DIST_FIELDS, 'Register Interest') + FORM_ART + '</div></section>\n  ')
     m += faq_block(L, 'distributors')
     swap_main('distributor-partnership.html', m, 'js/reg-form.js js/calc.js')
 
@@ -319,7 +328,7 @@ def manufacturer():
           f'<div><span class="rr__src">Listed Brands Benefit</span><h3>Why Manufacturers Should Not Ignore Digital Retail Visibility</h3>{paras(whyp)}</div></div></div></section>\n  ')
     m += (f'<section class="section"><div class="container"><div class="section-head"><h2>Commercial and Operational Clarity for Manufacturers</h2></div>'
           + table(rows, ['Manufacturer’s Key Concern', 'How Source Pro B2B2C Addresses It']) + '</div></section>\n  ')
-    m += (f'<section class="form-wrap" id="register"><div class="container">' + form('m', 'Register with Us', 'Hello Source Pro, I would like to list my products as a manufacturer.', MANU_FIELDS, 'Submit Enquiry') + '</div></section>\n  ')
+    m += (f'<section class="form-wrap" id="register"><div class="container form-split">' + form('m', 'Register with Us', 'Hello Source Pro, I would like to list my products as a manufacturer.', MANU_FIELDS, 'Submit Enquiry') + FORM_ART + '</div></section>\n  ')
     m += faq_block(L, 'manufacturers')
     swap_main('manufacturer-partnership.html', m, 'js/reg-form.js')
 
@@ -378,14 +387,16 @@ def customer_experience():
     f0 = find[0][1]
     f0a = f0.replace(quote, '').strip()
     m = hero('Customer experience', 'Customer Experience', '<p>Here Is What Your Customer Experience Looks Like.</p>', '', 'customer-experience-hero.webp', alt='A customer ordering from a neighbourhood shop')
-    m += (f'<section class="section"><div class="container split split--img"><div><p>The Customer Experience</p><h2>Here Is What Your Customer Experience Looks Like.</h2>{paras(intro)}</div>'
-          f'<figure class="figure-card"><img src="assets/gal-customer.webp" width="1373" height="1173" alt="A customer and a shopkeeper talking in a neighbourhood store" loading="lazy" decoding="async"></figure></div></section>\n  ')
-    m += (f'<section class="section on-ink"><div class="container two"><div><h2>HOW YOUR CUSTOMERS FIND YOU</h2><p>{e(f0a)}</p></div>'
-          f'<div><blockquote>{e(quote)}</blockquote>{paras(find[1:])}</div></div></section>\n  ')
+    m += (f'<section class="section"><div class="container"><div class="cx-intro"><p>The Customer Experience</p><h2>Here Is What Your Customer Experience Looks Like.</h2>{paras(intro)}</div></div></section>\n  ')
+    m += (f'<section class="section on-ink"><div class="container split split--img">'
+          f'<figure class="figure-card"><img src="assets/gal-customer.webp" width="1373" height="1173" alt="A customer and a shopkeeper talking in a neighbourhood store" loading="lazy" decoding="async"></figure>'
+          f'<div class="cx-find"><h2>HOW YOUR CUSTOMERS FIND YOU</h2><p>{e(f0a)} <em>{e(quote)}</em></p>'
+          f'{paras(find[1:])}</div></div></section>\n  ')
     m += (f'<section class="section"><div class="container"><div class="section-head"><h2>Here Is What Your Customer Experience Looks Like</h2></div>'
           f'<ol>{"".join(f"<li><span>{i + 1}</span><strong>{e(a)}</strong>{e(b)}</li>" for i, (a, b) in enumerate(pairs))}</ol></div></section>\n  ')
-    m += (f'<section class="section on-ink"><div class="container two"><div><h2>WHY THEY CHOOSE YOU OVER THE GIANTS</h2>{paras(why)}</div>'
-          f'<div><h2>WHAT YOUR CUSTOMERS GET</h2><ul>{"".join(f"<li>{TICK}<span><strong>{e(a)}</strong> {e(b)}</span></li>" for a, b in gp)}</ul></div></div></section>')
+    cards = ''.join(f'<article class="cx-card"><p>{e(t)}</p></article>' for tg, t in why if tg == 'p')
+    m += (f'<section class="section on-ink"><div class="container"><h2 class="cx-title">WHY THEY CHOOSE YOU OVER THE GIANTS</h2><div class="cx-cards">{cards}</div></div></section>\n  '
+          f'<section class="section on-ink cx-get-sec"><div class="container"><div class="cx-find"><h2>WHAT YOUR CUSTOMERS GET</h2><ul>{"".join(f"<li>{TICK}<span><strong>{e(a)}</strong> {e(b)}</span></li>" for a, b in gp)}</ul></div></div></section>')
     swap_main('customer-experience.html', m)
 
 
