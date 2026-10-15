@@ -4,8 +4,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 S = os.path.join(ROOT, "_src")
 rd = lambda n: open(os.path.join(S, n), encoding="utf8").read()
 
-header_t, footer_t = rd("common/header.html"), rd("common/footer.html")
-widgets_t = rd("common/widgets.html")
+header_t, footer_t = open(os.path.join(ROOT,"common","header.html"),encoding="utf8").read(), open(os.path.join(ROOT,"common","footer.html"),encoding="utf8").read()
+widgets_t = open(os.path.join(ROOT,"common","widgets.html"),encoding="utf8").read()
 TICK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>'
 
 
