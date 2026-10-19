@@ -66,11 +66,19 @@ page('retail-reality.html', 'Retail Reality — Source Pro B2B2C', 'Media covera
      f'<section class="section"><div class="container"><div class="section-head"><h2>Media Coverage</h2><p>A curated collection of mainstream media reports highlighting the challenges faced by traditional retailers, distributors, and small businesses. These links are shared only for public awareness and industry context. All copyrights belong to the respective publishers.</p></div><div class="rr">{cards}</div><div class="rr-disc"><h2>Disclaimer</h2><p>The articles linked on this page are published by independent third-party media organisations. They are shared only for educational, public-awareness, and industry-context purposes. App Sphere B2B India Private Limited does not claim ownership of the content, images, headlines, or trademarks of the respective publishers. If any publisher wishes a link to be removed, we will do so promptly upon request.</p></div></div></section>')
 
 # ---------------- news ----------------
+# add a dict here per news item; each renders as one card on news.html
+NEWS = [
+    dict(img='gal-what-we-are.webp', w=1373, h=1173, alt='What SourcePro B2B is', src='Dhanam Online',
+         title='SourcePro B2B: Kerala Startup Brings Digital Power to Small Retailers',
+         desc='An in-depth feature by Dhanam Online highlighting how SourcePro B2B is equipping traditional small retailers and neighborhood shops with robust digital tools to compete effectively in a rapidly evolving commerce landscape.',
+         href='https://dhanamonline.com/business-kerala/sourcepro-b2b-kerala-startup-brings-digital-power-to-small-retailers-rrn'),
+]
+news_items = ''.join(f'<article class="news-feature"><img src="assets/{n["img"]}" width="{n["w"]}" height="{n["h"]}" alt="{n["alt"]}" loading="lazy" decoding="async"><div><span class="rr__src">{n["src"]}</span><h2>{n["title"]}</h2><p>{n["desc"]}</p><a class="btn" href="{n["href"]}" target="_blank" rel="noopener">Read Full Article →</a></div></article>' for n in NEWS)
 page('news.html', 'News — Source Pro B2B2C', 'News and reports on how Source Pro B2B2C is empowering India’s traditional retail ecosystem.',
      'https://appsphereb2b.com/news/', 'News', 'News',
      '',
      'cta-handshake.webp',
-     f'<section class="section"><div class="container"><div class="section-head"><h2>Media Coverage</h2><p>News and reports highlighting how Source Pro B2B2C is transforming and empowering India\'s traditional retail ecosystem.</p></div><article class="news-feature"><img src="assets/gal-what-we-are.webp" width="1373" height="1173" alt="What SourcePro B2B is" loading="lazy" decoding="async"><div><span class="rr__src">Dhanam Online</span><h2>SourcePro B2B: Kerala Startup Brings Digital Power to Small Retailers</h2><p>An in-depth feature by Dhanam Online highlighting how SourcePro B2B is equipping traditional small retailers and neighborhood shops with robust digital tools to compete effectively in a rapidly evolving commerce landscape.</p><a class="btn" href="https://dhanamonline.com/business-kerala/sourcepro-b2b-kerala-startup-brings-digital-power-to-small-retailers-rrn" target="_blank" rel="noopener">Read Full Article →</a></div></article></div></section>')
+     f'<section class="section"><div class="container"><div class="section-head"><h2>Media Coverage</h2><p>News and reports highlighting how Source Pro B2B2C is transforming and empowering India\'s traditional retail ecosystem.</p></div><div class="news-list">{news_items}</div></div></section>')
 
 # ---------------- customer experience ----------------
 steps = [('They discover your shop is now digital', 'You contact your existing customers directly through WhatsApp, a shop display, a QR code, social media or word of mouth. They hear about your digital shop from you, not from an algorithm.'),
