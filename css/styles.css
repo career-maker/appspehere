@@ -1113,17 +1113,17 @@ ul:has(> li > .team__ph) span { color: var(--color-muted); }
 .widget-search input:focus-visible { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(40, 48, 143, .25); }
 .widget-search button { width: 46px; height: 46px; border-radius: 12px; border: 0; background: var(--color-primary); color: #fff; display: grid; place-items: center; }
 .widget-search svg { width: 20px; height: 20px; }
-.widget:nth-of-type(2) ul a { display: grid; grid-template-columns: 72px 1fr; gap: .9rem; align-items: center; text-decoration: none; }
-.widget:nth-of-type(2) ul img { width: 72px; height: 72px; object-fit: cover; border-radius: 12px; }
-.widget:nth-of-type(2) ul strong { display: block; font-family: var(--font-display); line-height: 1.15; }
-.widget:nth-of-type(2) ul small { color: var(--color-muted); }
-.widget:nth-of-type(3) ul a { display: flex; justify-content: space-between; padding: .65rem 0; border-bottom: 1px solid var(--color-border); text-decoration: none; font-weight: 600; min-height: 44px; align-items: center; }
-.widget:nth-of-type(3) ul a span { background: #e8ecf7; border-radius: 999px; padding: .1rem .6rem; font-size: .8rem; }
+.widget .recent a { display: grid; grid-template-columns: 72px 1fr; gap: .9rem; align-items: center; text-decoration: none; }
+.widget .recent img { width: 72px; height: 72px; object-fit: cover; border-radius: 12px; }
+.widget .recent strong { display: block; font-family: var(--font-display); line-height: 1.15; }
+.widget .recent small { color: var(--color-muted); }
+.widget .cats a { display: flex; justify-content: space-between; padding: .65rem 0; border-bottom: 1px solid var(--color-border); text-decoration: none; font-weight: 600; min-height: 44px; align-items: center; }
+.widget .cats a span { background: #e8ecf7; border-radius: 999px; padding: .1rem .6rem; font-size: .8rem; }
 .widget--cta { background: var(--color-secondary); color: var(--color-ink-text); border-color: var(--color-secondary); display: grid; gap: .75rem; }
 .widget--cta p { color: var(--color-ink-muted); }
 .widget--cta .btn { justify-self: stretch; }
-.widget:nth-of-type(5) ul { display: grid; gap: .5rem; }
-.widget:nth-of-type(5) ul a { text-decoration: none; font-weight: 600; display: inline-block; padding: .25rem 0; }
+.widget .mini-contact { display: grid; gap: .5rem; }
+.widget .mini-contact a { text-decoration: none; font-weight: 600; display: inline-block; padding: .25rem 0; }
 .share { display: flex; align-items: center; gap: .6rem; padding: 1rem 0; margin-bottom: .5rem; border-block: 1px solid var(--color-border); }
 .share span { font-weight: 800; letter-spacing: .1em; text-transform: uppercase; font-size: .78rem; margin-right: .4rem; }
 .share a { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--color-border); display: grid; place-items: center; transition: background var(--t-fast), color var(--t-fast); }
