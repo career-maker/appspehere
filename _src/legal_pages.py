@@ -26,22 +26,12 @@ def legal_page(doc):
     secs = "".join('<section class="legal__sec" id="%s"><h2><span>%02d</span>%s</h2>%s</section>' % (_slug(h), n + 1, esc(h), _blocks(b)) for n, (h, b) in enumerate(doc["sections"]))
     others = "".join('<a href="%s"%s>%s</a>' % (d["file"], ' aria-current="page"' if d is doc else "", esc(d["title"])) for d in DOCS)
     body = """
-  <section class="page-hero page-hero--banner"><div class="container">
-    <p class="crumbs"><a href="index.html">Home</a> / %s</p>
-    <h1>%s</h1>
-    <p>Source Pro B2B2C · App Sphere B2B India Private Limited</p>
-  </div></section>
-  <div class="section"><div class="container legal">
-    <aside class="legal__toc" aria-label="On this page">
-      <details class="legal__tocbox" open><summary>On this page</summary><ol>%s</ol></details>
-      <nav class="legal__others" aria-label="Legal pages"><h2>Legal</h2>%s</nav>
-    </aside>
-    <div class="legal__body">
+  <div class="section"><div class="container"><div class="legal__body">
+      <h1>%s</h1>
       <dl class="legal__meta">%s</dl>
       <div class="legal__intro">%s</div>
       %s
-    </div>
-  </div></div>""" % (esc(doc["title"]), esc(doc["title"]), toc, others, meta, intro, secs)
+  </div></div></div>""" % (esc(doc["title"]), meta, intro, secs)
     page(doc["file"], "%s — Source Pro B2B2C" % doc["title"], doc["desc"], doc["canon"], body)
 
 
