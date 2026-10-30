@@ -161,3 +161,25 @@ document.addEventListener('click', function (e) {
     li.querySelector('button').setAttribute('aria-expanded', 'false');
   });
 });
+
+/* Strategic Insights tabs */
+(function () {
+  var root = document.querySelector('.strat');
+  if (!root) return;
+  var tabs = root.querySelectorAll('[role="tab"]'), panels = root.querySelectorAll('[role="tabpanel"]');
+  function show(id) {
+    tabs.forEach(function (t) { var on = t.getAttribute('aria-controls') === id; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; });
+    panels.forEach(function (p) { p.hidden = p.id !== id; });
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { show(t.getAttribute('aria-controls')); });
+    t.addEventListener('keydown', function (e) {
+      var n = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : null;
+      if (n === null) return;
+      var nt = tabs[(n + tabs.length) % tabs.length]; nt.focus(); nt.click();
+    });
+  });
+  root.querySelectorAll('[data-strat]').forEach(function (a) {
+    a.addEventListener('click', function (e) { e.preventDefault(); show(a.dataset.strat); root.scrollIntoView({ behavior: 'smooth' }); });
+  });
+})();
