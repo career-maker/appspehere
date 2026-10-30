@@ -2399,3 +2399,26 @@ body { overflow-x: clip; }
 .gal__item img { height: 100%; object-fit: cover; }
 .gal__item span { transform: none; opacity: 1; font-size: .95rem; padding: 3rem 1.1rem 1rem; }
 .news-list + .pager, .gal + .pager { margin-top: 2.5rem; }
+
+/* ===== consistency pass: card hover, type scale ===== */
+.values div, .phase, .mvg__item, .mvg__insp, .cx-card, .news-feature { transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease); }
+.values div:hover, .phase:hover, .mvg__item:hover, .mvg__insp:hover, .cx-card:hover, .news-feature:hover { transform: translateY(-6px); box-shadow: 0 30px 50px -28px rgba(15, 21, 71, .45); }
+.values div:hover, .phase:hover { border-color: var(--color-accent); }
+.values div strong { transition: transform .35s var(--ease); transform-origin: left center; }
+.values div:hover strong { transform: scale(1.12); }
+.mvg__item:hover .mvg__ico, .mvg__insp:hover .mvg__ico { transform: scale(1.08) rotate(-4deg); }
+.mvg__ico { transition: transform .35s var(--ease); }
+.news-feature img { transition: transform .6s var(--ease); }
+.news-feature { overflow: hidden; }
+.news-feature:hover img { transform: scale(1.03); }
+@media (prefers-reduced-motion: reduce) { .values div:hover, .phase:hover, .mvg__item:hover, .mvg__insp:hover, .cx-card:hover, .news-feature:hover { transform: none; } .values div:hover strong, .mvg__item:hover .mvg__ico, .mvg__insp:hover .mvg__ico, .news-feature:hover img { transform: none; } }
+
+/* body copy inside cards = 1rem everywhere */
+.values p, .phase p, .rr__card p, #faq .faq__a, .cx-card p, .strat__txt ol li { font-size: 1rem; line-height: 1.7; }
+/* card titles = 1.25rem; sub-section titles share one clamp */
+.values h3, .rr__card h3, .dl__card h3, .phase h3, .phases h3, .mvg__item h3, .mvg__insp h3 { font-size: 1.25rem; line-height: 1.25; }
+.legal__sec h2, .comments h2, .sp-summary-section h2, .split > .cx-find > h2 { font-size: clamp(1.6rem, 1.1rem + 1.6vw, 2.25rem); }
+.legal__body h1 { font-size: clamp(2rem, 1rem + 3vw, 3.5rem); }
+/* founder's message: clear title/body hierarchy */
+.founder__card h2 { font-size: clamp(1.6rem, 1.1rem + 1.6vw, 2.25rem); line-height: 1.15; }
+.founder__card p { font-size: 1.125rem; line-height: 1.8; }
