@@ -2429,3 +2429,19 @@ body { overflow-x: clip; }
   .founder__card > figure img { width: 100%; height: 0; min-height: 100%; aspect-ratio: auto; object-fit: cover; object-position: 50% 15%; }
 }
 .founder__card figure { box-shadow: none; }
+
+/* premium glare sweep on image hover */
+.shine { margin: 0; overflow: hidden; }
+.news-feature .shine img { display: block; }
+:is(.figure-card, .founder__card > figure, .mvg-split__img, .article figure, .blog-card__img, .gal__item, .prob__photo, .role-fig, .testi__photo, .shine) { position: relative; }
+.mvg-split__img, .founder__card > figure { overflow: hidden; }
+:is(.figure-card, .founder__card > figure, .mvg-split__img, .article figure, .blog-card__img, .gal__item, .prob__photo, .role-fig, .testi__photo, .shine, ul:has(> li > .team__ph) li)::after {
+  content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, .15) 42%, rgba(255, 255, 255, .6) 50%, rgba(255, 255, 255, .15) 58%, transparent 70%);
+  transform: translateX(-130%) skewX(-12deg);
+}
+:is(.figure-card, .founder__card > figure, .mvg-split__img, .article figure, .blog-card__img, .gal__item, .prob__photo, .role-fig, .testi__photo, .shine, ul:has(> li > .team__ph) li):hover::after {
+  opacity: 1; transform: translateX(130%) skewX(-12deg); transition: transform 1s var(--ease), opacity .2s;
+}
+ul:has(> li > .team__ph) li { position: relative; }
+@media (prefers-reduced-motion: reduce) { :is(.figure-card, .founder__card > figure, .mvg-split__img, .article figure, .blog-card__img, .gal__item, .prob__photo, .role-fig, .testi__photo, .shine, ul:has(> li > .team__ph) li)::after { display: none; } }
