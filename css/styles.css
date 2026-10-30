@@ -2374,3 +2374,25 @@ body { overflow-x: clip; }
 .legal__facts { margin: 0 0 2rem; padding: 0 0 1.5rem; border-bottom: 1px solid var(--color-border); line-height: 1.9; color: var(--color-muted); }
 .legal__facts strong { color: var(--color-text); }
 .legal__facts a { color: var(--color-primary); font-weight: 600; }
+
+/* about: "What We Do" intro matches other sections' type scale */
+.about-intro > div + div { margin-top: 1.75rem; }
+.about-intro h3 { font-size: clamp(1.3rem, 1rem + 1.2vw, 2rem); margin: 1.25rem 0 .75rem; }
+.about-intro p { font-size: var(--fs-lead); line-height: 1.7; color: var(--color-muted); max-width: 46rem; }
+@media (min-width: 861px) { .split--img:has(.about-intro) > figure { position: static; align-self: center; } }
+
+/* pagination (blog, news, gallery) */
+[hidden] { display: none !important; }
+.pager { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; margin-top: clamp(2rem, 4vw, 3rem); grid-column: 1 / -1; }
+.pager__b { min-width: 44px; min-height: 44px; padding: 0 .9rem; border-radius: 999px; border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-primary); font: 700 1rem var(--font-body, inherit); cursor: pointer; transition: background .2s, color .2s, border-color .2s; }
+.pager__b:hover:not(:disabled) { border-color: var(--color-accent); color: var(--color-accent-strong); }
+.pager__b.is-on { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
+.pager__b:disabled { opacity: .4; cursor: default; }
+.pager__b:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 2px; }
+
+/* gallery: uniform grid with always-visible captions */
+.gal { columns: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+.gal__item { margin: 0; aspect-ratio: 4 / 3; }
+.gal__item img { height: 100%; object-fit: cover; }
+.gal__item span { transform: none; opacity: 1; font-size: .95rem; padding: 3rem 1.1rem 1rem; }
+.news-list + .pager, .gal + .pager { margin-top: 2.5rem; }
