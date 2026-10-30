@@ -183,3 +183,53 @@ document.addEventListener('click', function (e) {
     a.addEventListener('click', function (e) { e.preventDefault(); show(a.dataset.strat); root.scrollIntoView({ behavior: 'smooth' }); });
   });
 })();
+
+/* Title reveal: words rise out of a mask when a heading scrolls in (and when a hero slide becomes active) */
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+  var SKIP = '.blog-card h2, .news-item h2, .comments h2, .widget h2, .sidebar h2, form h2, .legal__sec h2, .rr__card h2, .sp-infra-form h2, .calc h2, [data-no-title-anim]';
+  var all = Array.prototype.slice.call(document.querySelectorAll('main h1, main h2, .stage > p:nth-child(2)'));
+  var els = all.filter(function (el) { return !el.closest(SKIP) && el.textContent.trim(); });
+  if (!els.length) return;
+
+  function split(el) {
+    var i = 0, label = el.textContent.replace(/\s+/g, ' ').trim();
+    (function walk(n) {
+      Array.prototype.slice.call(n.childNodes).forEach(function (c) {
+        if (c.nodeType === 3) {
+          var frag = document.createDocumentFragment();
+          c.textContent.split(/(\s+)/).forEach(function (t) {
+            if (!t) return;
+            if (/^\s+$/.test(t)) { frag.appendChild(document.createTextNode(' ')); return; }
+            var o = document.createElement('span'), inn = document.createElement('span');
+            o.className = 'tw'; o.setAttribute('aria-hidden', 'true');
+            inn.className = 'tw__i'; inn.textContent = t; inn.style.setProperty('--i', i++);
+            o.appendChild(inn); frag.appendChild(o);
+          });
+          c.replaceWith(frag);
+        } else if (c.nodeType === 1 && c.tagName !== 'BR') walk(c);
+      });
+    })(el);
+    el.setAttribute('aria-label', label);
+    el.classList.add('tw-split');
+  }
+  els.forEach(split);
+  document.documentElement.classList.add('tw-on');
+
+  var stages = [], io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+  }, { threshold: 0.35 });
+  els.forEach(function (el) { (el.closest('.stage') ? stages : { push: function () { io.observe(el); } }).push(el); });
+
+  // hero slides: GSAP fades each .stage in/out via inline style, so replay the words on each fade-in
+  stages.forEach(function (el) {
+    var st = el.closest('.stage');
+    function sync() {
+      var cs = getComputedStyle(st), on = cs.visibility !== 'hidden' && parseFloat(cs.opacity) > 0.5;
+      el.classList.toggle('is-in', on);
+      st.querySelectorAll('h1.tw-split, p.tw-split').forEach(function (t) { t.classList.toggle('is-in', on); });
+    }
+    new MutationObserver(sync).observe(st, { attributes: true, attributeFilter: ['style'] });
+    sync();
+  });
+})();
