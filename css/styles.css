@@ -2479,3 +2479,4 @@ ul:has(> li > .team__ph) li { position: relative; }
 
 /* Strategic Insights: section title, not a button-like pill */
 .strat__head h3 { display: block; padding: 0; border-radius: 0; background: none; box-shadow: none; color: var(--color-ink, var(--color-secondary)); font-size: var(--fs-h2); letter-spacing: -.02em; text-transform: none; line-height: 1.05; }
+.menu .mega__card:hover { padding-left: 0; }
