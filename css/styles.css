@@ -2470,3 +2470,9 @@ ul:has(> li > .team__ph) li { position: relative; }
 .news-item h2 a:hover { color: var(--color-primary); }
 .news-item p:not(.news-item__meta) { color: var(--color-muted); margin: 0; }
 @media (max-width: 640px) { .news-item { grid-template-columns: 1fr; } }
+
+/* gallery: 3x3 grid, no captions */
+.gal { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.gal__item span { display: none; }
+@media (max-width: 860px) { .gal { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .gal { grid-template-columns: 1fr; } }
