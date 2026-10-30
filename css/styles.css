@@ -2445,3 +2445,7 @@ body { overflow-x: clip; }
 }
 ul:has(> li > .team__ph) li { position: relative; }
 @media (prefers-reduced-motion: reduce) { :is(.figure-card, .founder__card > figure, .mvg-split__img, .article figure, .blog-card__img, .gal__item, .prob__photo, .role-fig, .testi__photo, .shine, ul:has(> li > .team__ph) li)::after { display: none; } }
+
+/* inner-page banner: breathing room under the breadcrumb */
+.page-hero .container > p:first-child { margin-bottom: 1.25rem; }
+.page-hero .container > p:first-child + .hero-badge { margin-bottom: 1.5rem; }
