@@ -2492,3 +2492,9 @@ main section > .container > p:first-child:has(+ h2), main .container > p:has(+ h
 /* home problem callout: bold statement card instead of yellow caution strip */
 .prob ul + p { gap: 1.25rem; margin-top: 1.75rem; padding: 1.4rem 1.6rem; background: linear-gradient(120deg, var(--color-secondary), var(--color-primary)); border: 0; border-radius: 20px; color: #fff; font-family: var(--font-display); font-weight: 700; font-size: clamp(1.05rem, .95rem + .5vw, 1.3rem); line-height: 1.35; letter-spacing: -.01em; box-shadow: 0 26px 44px -26px rgba(15, 21, 71, .7); }
 .prob ul + p svg { box-sizing: content-box; width: 22px; height: 22px; padding: 13px; border-radius: 50%; background: rgba(245, 184, 28, .18); color: #f5b81c; box-shadow: 0 0 0 1px rgba(245, 184, 28, .45); }
+
+/* title left, intro right: no empty right-hand gap */
+@media (min-width: 861px) {
+  .section-head--split { max-width: none; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+  .section-head--split > p { margin: 0 !important; max-width: none; }
+}
