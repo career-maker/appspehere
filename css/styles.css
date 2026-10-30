@@ -2482,9 +2482,9 @@ ul:has(> li > .team__ph) li { position: relative; }
 .menu .mega__card:hover { padding-left: 0; }
 
 /* titles use Title Case everywhere (no all-caps) */
-h1, h2, h3, h4, .section-head > p, .problem__text > p, .hero-badge, .cat, .rr__src, .phase__n, .phases span, .strat__tabs button, .page-hero h1, .page-hero--photo h1, .page-hero--banner h1, .cta h2, .founder__tag { text-transform: capitalize !important; }
+h1, h2, h3, h4, .section-head > p:has(+ :is(h1, h2, h3)), .problem__text > p:has(+ :is(h1, h2, h3)), .hero-badge, .cat, .rr__src, .phase__n, .phases span, .strat__tabs button, .page-hero h1, .page-hero--photo h1, .page-hero--banner h1, .cta h2, .founder__tag { text-transform: capitalize !important; }
 main section > .container > p:first-child:has(+ h2), main .container > p:has(+ h2), main .container > p:has(+ h3) { text-transform: capitalize !important; }
-.stage p, .stage .accent, .stage--intro p { text-transform: capitalize !important; }
+.stage > p:first-child, .stage > p:nth-child(2), .stage .accent { text-transform: capitalize !important; }
 .career p:has(+ h2), .career p:has(+ h3), .career__label, .career .label { text-transform: capitalize !important; }
-main p:has(+ :is(h1, h2, h3)), .split > div > p:first-child:has(+ p):not(:only-child) { text-transform: capitalize !important; }
+:is(.container, .split > div) > p:first-child:has(+ :is(h1, h2, h3)), .split > div > p:first-child:has(+ p):not(:only-child) { text-transform: capitalize !important; }
 .role-tab { text-transform: capitalize !important; }
