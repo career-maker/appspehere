@@ -2488,3 +2488,7 @@ main section > .container > p:first-child:has(+ h2), main .container > p:has(+ h
 .career p:has(+ h2), .career p:has(+ h3), .career__label, .career .label { text-transform: capitalize !important; }
 :is(.container, .split > div) > p:first-child:has(+ :is(h1, h2, h3)), .split > div > p:first-child:has(+ p):not(:only-child) { text-transform: capitalize !important; }
 .role-tab { text-transform: capitalize !important; }
+
+/* home problem callout: bold statement card instead of yellow caution strip */
+.prob ul + p { gap: 1.25rem; margin-top: 1.75rem; padding: 1.4rem 1.6rem; background: linear-gradient(120deg, var(--color-secondary), var(--color-primary)); border: 0; border-radius: 20px; color: #fff; font-family: var(--font-display); font-weight: 700; font-size: clamp(1.05rem, .95rem + .5vw, 1.3rem); line-height: 1.35; letter-spacing: -.01em; box-shadow: 0 26px 44px -26px rgba(15, 21, 71, .7); }
+.prob ul + p svg { box-sizing: content-box; width: 22px; height: 22px; padding: 13px; border-radius: 50%; background: rgba(245, 184, 28, .18); color: #f5b81c; box-shadow: 0 0 0 1px rgba(245, 184, 28, .45); }
