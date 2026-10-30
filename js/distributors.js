@@ -1648,83 +1648,75 @@ document.addEventListener("DOMContentLoaded", function () {
     summarySection.style.display = "block";
     outputSection.innerHTML = "";
 
+    var meter = document.getElementById("spMeterBar");
+    if (meter) meter.style.width = (totalSeats ? Math.round(districtOnboarded / totalSeats * 100) : 0) + "%";
+    var meterText = document.getElementById("spMeterText");
+    if (meterText) meterText.textContent = districtOnboarded + " of " + totalSeats + " seats onboarded";
+
+    var grid = document.createElement("div");
+    grid.className = "sp-tiles";
+
     constituencies.forEach(function (constituency) {
       var distributors = distributorData[constituency] || [];
       var onboarded = distributors.length;
       var available = Math.max(TOTAL_SEATS_PER_CONSTITUENCY - onboarded, 0);
       var status = getConstituencyStatus(onboarded, available);
 
-      var card = document.createElement("div");
-      card.className = "sp-constituency-card";
+      var dots = "";
+      for (var i = 0; i < TOTAL_SEATS_PER_CONSTITUENCY; i++) {
+        dots += '<i class="' + (i < onboarded ? "is-on" : "") + '"></i>';
+      }
 
-      var distributorHtml = buildDistributorHtml(distributors);
-      var actionButton = buildMainActionButton(available);
-
-      card.innerHTML =
-        '<div class="sp-constituency-top">' +
-          '<div>' +
-            '<h3>' + escapeHtml(constituency) + ' Constituency</h3>' +
-          '</div>' +
-          '<div class="sp-badge-row">' +
-            '<span class="sp-badge">Total Seats: ' + TOTAL_SEATS_PER_CONSTITUENCY + '</span>' +
-            '<span class="sp-badge">Onboarded: ' + onboarded + '</span>' +
-            '<span class="sp-badge">Available: ' + available + '</span>' +
-            '<span class="sp-badge ' + status.className + '">' + status.label + '</span>' +
-          '</div>' +
+      var tile = document.createElement("article");
+      tile.className = "sp-tile" + (onboarded ? " has-dist" : "");
+      tile.innerHTML =
+        '<header class="sp-tile__top">' +
+          '<h3>' + escapeHtml(constituency) + '</h3>' +
+          '<span class="sp-badge ' + status.className + '">' + status.label + '</span>' +
+        '</header>' +
+        '<div class="sp-seats" aria-label="' + onboarded + ' of ' + TOTAL_SEATS_PER_CONSTITUENCY + ' seats onboarded">' +
+          '<span class="sp-seats__dots">' + dots + '</span>' +
+          '<span class="sp-seats__txt"><b>' + available + '</b> of ' + TOTAL_SEATS_PER_CONSTITUENCY + ' seats open</span>' +
         '</div>' +
-        distributorHtml +
-        '<div class="sp-action-row">' +
-          actionButton +
-          '<a href="' + contactPageUrl + '" class="sp-btn sp-btn-secondary">Talk to Source Pro Team</a>' +
-        '</div>' +
-        '<p class="sp-card-note">' +
-          'Distributor details are displayed for local business verification and confidence-building purposes. Full details may be shared only as per company policy and distributor consent.' +
-        '</p>';
-
-      outputSection.appendChild(card);
+        (onboarded ? buildDistributorHtml(distributors) : '<p class="sp-tile__empty">No distributor onboarded yet. Open for eligible applicants.</p>') +
+        (available > 0 ? '<a class="sp-tile__apply" href="' + registrationPageUrl + '">Apply for a seat <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>' : '');
+      grid.appendChild(tile);
     });
+    outputSection.appendChild(grid);
+
+    var cta = document.createElement("div");
+    cta.className = "sp-cta";
+    cta.innerHTML =
+      '<div><h3>Want a distributor seat in ' + escapeHtml(district) + '?</h3>' +
+      '<p>Apply now, or talk to the Source Pro team to check seat availability in your constituency.</p></div>' +
+      '<div class="sp-action-row">' +
+        buildMainActionButton(availableSeats) +
+        '<a href="' + contactPageUrl + '" class="sp-btn sp-btn-secondary">Talk to Source Pro Team</a>' +
+      '</div>';
+    outputSection.appendChild(cta);
+
+    var note = document.createElement("p");
+    note.className = "sp-card-note";
+    note.textContent = "Distributor details are displayed for local business verification and confidence-building purposes. Full details may be shared only as per company policy and distributor consent.";
+    outputSection.appendChild(note);
   }
 
   function buildDistributorHtml(distributors) {
-    var html = "";
-
-    if (!distributors || distributors.length === 0) {
-      return (
-        '<div class="sp-no-distributor">' +
-          'No distributor has been onboarded in this constituency yet. This is an open opportunity for eligible applicants.' +
-        '</div>'
-      );
-    }
-
-    html += '<div class="sp-distributor-grid">';
-
-    distributors.forEach(function (distributor) {
-      var callButton = "";
-
-      if (distributor.mobileLink && distributor.mobileLink !== "") {
-        callButton =
-          '<div class="sp-action-row">' +
-            '<a class="sp-btn sp-btn-secondary" href="' + escapeAttribute(distributor.mobileLink) + '">Call Distributor</a>' +
-          '</div>';
-      }
-
+    var html = '<div class="sp-dists">';
+    distributors.forEach(function (d) {
+      var call = (d.mobileLink && d.mobileLink !== "") ? '<a class="sp-dist__call" href="' + escapeAttribute(d.mobileLink) + '">Call</a>' : "";
       html +=
-        '<div class="sp-distributor-card">' +
-          '<img class="sp-distributor-photo" src="' + escapeAttribute(distributor.photo) + '" alt="' + escapeAttribute(distributor.name) + '">' +
-          '<div class="sp-distributor-details">' +
-            '<h4>' + escapeHtml(distributor.name) + '</h4>' +
-            '<p><strong>Trade Name:</strong> ' + escapeHtml(distributor.tradeName) + '</p>' +
-            '<p><strong>Location:</strong> ' + escapeHtml(distributor.addressDisplay) + '</p>' +
-            '<p><strong>Mobile:</strong> ' + escapeHtml(distributor.mobileDisplay) + '</p>' +
-            '<span class="sp-verified">' + escapeHtml(distributor.gstDisplay) + '</span>' +
-            callButton +
-          '</div>' +
+        '<div class="sp-dist">' +
+          '<img class="sp-dist__photo" src="' + escapeAttribute(d.photo) + '" alt="' + escapeAttribute(d.name) + '">' +
+          '<div class="sp-dist__info">' +
+            '<strong>' + escapeHtml(d.name) + '</strong>' +
+            '<span>' + escapeHtml(d.tradeName) + ' · ' + escapeHtml(d.addressDisplay) + '</span>' +
+            '<span>' + escapeHtml(d.mobileDisplay) + '</span>' +
+            '<em class="sp-verified">' + escapeHtml(d.gstDisplay) + '</em>' +
+          '</div>' + call +
         '</div>';
     });
-
-    html += '</div>';
-
-    return html;
+    return html + '</div>';
   }
 
   function buildMainActionButton(available) {
