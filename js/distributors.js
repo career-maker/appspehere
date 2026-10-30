@@ -1574,7 +1574,17 @@ document.addEventListener("DOMContentLoaded", function () {
   /* SITE: the client file shipped a placeholder "Mr. Sample Distributor" (Cherthala) with a placeholder photo.
      It is NOT shown publicly. Add real, consented distributors here using the same shape:
      "Cherthala": [ { name, tradeName, mobileDisplay, mobileLink, gstDisplay, addressDisplay, photo } ] */
-  var distributorData = {};
+  var distributorData = {
+    "Cherthala": [{
+      name: "Mr. Sample Distributor",
+      tradeName: "Sample Traders",
+      mobileDisplay: "+91 XXXXX XX432",
+      mobileLink: "",
+      gstDisplay: "GST Verified",
+      addressDisplay: "Cherthala, Alappuzha",
+      photo: "assets/distributor-placeholder.svg" /* SITE: live page used a via.placeholder.com image (service is gone) */
+    }]
+  };
 
   var stateSelect = document.getElementById("spState");
   var districtSelect = document.getElementById("spDistrict");
