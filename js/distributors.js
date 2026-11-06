@@ -1773,3 +1773,14 @@ document.addEventListener("DOMContentLoaded", function () {
   stateSelect.value = "Kerala";
   stateSelect.dispatchEvent(new Event("change"));
 });
+
+/* distributor slider: prev/next scroll one card; swipe/scroll-snap handles touch */
+document.querySelectorAll('[data-dist-slider]').forEach(function (s) {
+  var track = s.querySelector('.dist-slider__track');
+  s.querySelectorAll('.dist-slider__nav').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var card = track.querySelector('.dist-slide');
+      track.scrollBy({ left: Number(b.dataset.dir) * (card.offsetWidth + 16), behavior: 'smooth' });
+    });
+  });
+});

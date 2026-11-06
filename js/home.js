@@ -137,6 +137,8 @@
     var mobile = ctx.conditions.mobile;
     var q = function (s) { return hero.querySelector(s); };
     var stage = function (n) { return q('[data-stage="' + n + '"]'); };
+    // CMS slider with a single slide: no scroll story to pin (it threw here and left every reveal below hidden)
+    if (!stage(1)) return;
     var counter = q('[data-counter]'), plus = q('[data-plus]');
     var rail = hero.querySelectorAll('.hero__rail i');
     var eco = q('[data-eco]');

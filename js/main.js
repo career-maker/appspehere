@@ -193,6 +193,8 @@ document.addEventListener('click', function (e) {
   if (!els.length) return;
 
   function split(el) {
+    // CMS titles can't hold <span class=accent>: *text* marks the accent words
+    if (!el.querySelector('.accent') && /\*[^*]+\*/.test(el.textContent)) el.innerHTML = el.innerHTML.replace(/\*([^*<]+)\*/g, '<span class="accent">$1</span>');
     var i = 0, label = el.textContent.replace(/\s+/g, ' ').trim();
     (function walk(n) {
       Array.prototype.slice.call(n.childNodes).forEach(function (c) {

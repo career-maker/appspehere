@@ -1594,7 +1594,7 @@ ul:has(> li > .team__ph) span { color: var(--color-muted); }
 .prob .problem { grid-template-columns: 1.05fr 1fr; align-items: center; gap: clamp(2rem, 5vw, 5rem); }
 .prob :is(:is(.split > div, .two > div, .cta-band__in > div, .philosophy > .container, .section-head, .contact__info, .faq > div, .problem__text) > p:has(+ :is(h1, h2, h3)), :where(.split > div > p:first-child:has(+ p), .philosophy > .container > p:first-child:has(+ figure))) { color: #2f6fe4; }
 .prob h2 { color: var(--color-secondary); }
-.prob__blue { color: #2f6fe4; }
+.prob__blue, .prob h2 .accent { color: #2f6fe4; }
 .prob .problem__p { max-width: 38rem; font-size: 1.05rem; line-height: 1.7; }
 .prob__who { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 2rem; }
 .prob__who li { padding: 0 1.1rem; border-left: 1px solid #cfd9f2; }
@@ -2423,11 +2423,7 @@ body { overflow-x: clip; }
 .founder__card h2 { font-size: clamp(1.6rem, 1.1rem + 1.6vw, 2.25rem); line-height: 1.15; }
 .founder__card p { font-size: 1.125rem; line-height: 1.8; }
 
-/* founder: photo fills the card height, ending level with the message text */
-@media (min-width: 861px) {
-  .founder__card > figure { position: relative; top: 0; align-self: stretch; display: grid; grid-template-rows: minmax(0, 1fr) auto; }
-  .founder__card > figure img { width: 100%; height: 0; min-height: 100%; aspect-ratio: auto; object-fit: cover; object-position: 50% 15%; }
-}
+/* founder: photo keeps its own size (sticky); only the text column grows */
 .founder__card figure { box-shadow: none; }
 
 /* premium glare sweep on image hover */
@@ -2596,3 +2592,36 @@ main section > .container > p:first-child:has(+ h2), main .container > p:has(+ h
 .calc__ticks .highlight { color: #fff; font-weight: 700; }
 .calc__ticks--sales, .calc__ticks:has(span:nth-child(11)) { font-size: .68rem; }
 @media (max-width: 40em) { .calc__ticks { font-size: .6rem; } .calc__ticks--sales, .calc__ticks:has(span:nth-child(11)) { font-size: .52rem; } }
+
+/* CMS lists: plain <ul><li> gets the check icon via CSS (editor cannot output svg/classes) */
+.hl li:not(:has(> svg))::before, .attract li:not(:has(> svg))::before, .role-panel > ul li:not(:has(> svg))::before {
+  content: ""; width: 22px; height: 22px; flex: none; margin-top: .1rem; background: var(--color-accent-strong);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.role-panel > ul:not(:has(> li > svg)) { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem 2rem; margin: 2rem 0; padding: 0; list-style: none; }
+.role-panel > ul:not(:has(> li > svg)) li { display: flex; gap: .7rem; align-items: flex-start; }
+.role-panel > ul li:not(:has(> svg))::before { background: var(--color-accent); }
+@media (max-width: 900px) { .role-panel > ul:not(:has(> li > svg)) { grid-template-columns: 1fr; } }
+
+/* customer experience: intro text beside its main image */
+@media (min-width: 861px) {
+  .container:has(> .cx-intro + .figure-card) { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center; }
+  .container:has(> .cx-intro + .figure-card) > .figure-card { margin: 0; }
+}
+.container:has(> .cx-intro + .figure-card) > .figure-card { margin-top: 1.5rem; }
+
+/* distributors: slider (scroll-snap, no library) */
+.dist-slider { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: .75rem; align-items: center; }
+.dist-slider__track { display: flex; gap: 1rem; margin: 0; padding: .5rem .25rem 1rem; list-style: none; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.dist-slider__track::-webkit-scrollbar { display: none; }
+.dist-slide { flex: 0 0 calc((100% - 3rem) / 4); scroll-snap-align: start; display: grid; justify-items: center; gap: .35rem; padding: 1.5rem 1rem; text-align: center; border-radius: var(--radius-lg); background: var(--color-surface, #fff); border: 1px solid var(--color-border); box-shadow: 0 18px 40px -26px rgba(15, 21, 71, .35); }
+.dist-slide img { width: 90px; height: 90px; object-fit: cover; border-radius: 50%; background: #dfe9e8; margin-bottom: .5rem; }
+.dist-slide strong { font-family: var(--font-display); font-size: 1.1rem; color: var(--color-secondary); }
+.dist-slide span { color: var(--color-accent-strong); font-weight: 600; font-size: .9rem; }
+.dist-slide p { margin: 0; color: var(--color-muted); font-size: .9rem; }
+.dist-slider__nav { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--color-border); background: #fff; color: var(--color-secondary); cursor: pointer; transition: background var(--t-fast), color var(--t-fast); }
+.dist-slider__nav:hover { background: var(--color-accent); color: var(--color-secondary); }
+.dist-slider__nav svg { width: 20px; height: 20px; }
+@media (max-width: 960px) { .dist-slide { flex-basis: calc((100% - 1rem) / 2); } }
+@media (max-width: 560px) { .dist-slider { grid-template-columns: minmax(0, 1fr); } .dist-slider__nav { display: none; } .dist-slide { flex-basis: 82%; } }
