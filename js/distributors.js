@@ -1682,7 +1682,17 @@ document.addEventListener("DOMContentLoaded", function () {
         (available > 0 ? '<a class="sp-tile__apply" href="' + registrationPageUrl + '">Apply for a seat <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>' : '');
       grid.appendChild(tile);
     });
-    outputSection.appendChild(grid);
+    var slider = document.createElement("div");
+    slider.className = "sp-slider";
+    slider.innerHTML = '<button type="button" class="sp-slider__nav" data-dir="-1" aria-label="Previous constituencies"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>' + '<button type="button" class="sp-slider__nav" data-dir="1" aria-label="Next constituencies"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>';
+    slider.insertBefore(grid, slider.lastChild);
+    slider.addEventListener("click", function (e) {
+      var b = e.target.closest(".sp-slider__nav");
+      if (!b) return;
+      var card = grid.querySelector(".sp-tile");
+      grid.scrollBy({ left: Number(b.dataset.dir) * (card.offsetWidth + 18), behavior: "smooth" });
+    });
+    outputSection.appendChild(slider);
 
     var cta = document.createElement("div");
     cta.className = "sp-cta";
@@ -1774,13 +1784,3 @@ document.addEventListener("DOMContentLoaded", function () {
   stateSelect.dispatchEvent(new Event("change"));
 });
 
-/* distributor slider: prev/next scroll one card; swipe/scroll-snap handles touch */
-document.querySelectorAll('[data-dist-slider]').forEach(function (s) {
-  var track = s.querySelector('.dist-slider__track');
-  s.querySelectorAll('.dist-slider__nav').forEach(function (b) {
-    b.addEventListener('click', function () {
-      var card = track.querySelector('.dist-slide');
-      track.scrollBy({ left: Number(b.dataset.dir) * (card.offsetWidth + 16), behavior: 'smooth' });
-    });
-  });
-});

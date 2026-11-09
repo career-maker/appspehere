@@ -2611,17 +2611,13 @@ main section > .container > p:first-child:has(+ h2), main .container > p:has(+ h
 }
 .container:has(> .cx-intro + .figure-card) > .figure-card { margin-top: 1.5rem; }
 
-/* distributors: slider (scroll-snap, no library) */
-.dist-slider { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: .75rem; align-items: center; }
-.dist-slider__track { display: flex; gap: 1rem; margin: 0; padding: .5rem .25rem 1rem; list-style: none; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
-.dist-slider__track::-webkit-scrollbar { display: none; }
-.dist-slide { flex: 0 0 calc((100% - 3rem) / 4); scroll-snap-align: start; display: grid; justify-items: center; gap: .35rem; padding: 1.5rem 1rem; text-align: center; border-radius: var(--radius-lg); background: var(--color-surface, #fff); border: 1px solid var(--color-border); box-shadow: 0 18px 40px -26px rgba(15, 21, 71, .35); }
-.dist-slide img { width: 90px; height: 90px; object-fit: cover; border-radius: 50%; background: #dfe9e8; margin-bottom: .5rem; }
-.dist-slide strong { font-family: var(--font-display); font-size: 1.1rem; color: var(--color-secondary); }
-.dist-slide span { color: var(--color-accent-strong); font-weight: 600; font-size: .9rem; }
-.dist-slide p { margin: 0; color: var(--color-muted); font-size: .9rem; }
-.dist-slider__nav { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--color-border); background: #fff; color: var(--color-secondary); cursor: pointer; transition: background var(--t-fast), color var(--t-fast); }
-.dist-slider__nav:hover { background: var(--color-accent); color: var(--color-secondary); }
-.dist-slider__nav svg { width: 20px; height: 20px; }
-@media (max-width: 960px) { .dist-slide { flex-basis: calc((100% - 1rem) / 2); } }
-@media (max-width: 560px) { .dist-slider { grid-template-columns: minmax(0, 1fr); } .dist-slider__nav { display: none; } .dist-slide { flex-basis: 82%; } }
+/* distributors: constituency tiles as a scroll-snap slider */
+.sp-slider { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: .75rem; align-items: center; }
+.sp-slider .sp-tiles { display: flex; gap: 1.1rem; align-items: flex-start; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: .5rem .25rem 1rem; }
+.sp-slider .sp-tiles::-webkit-scrollbar { display: none; }
+.sp-slider .sp-tile { flex: 0 0 calc((100% - 2.2rem) / 3); scroll-snap-align: start; }
+.sp-slider__nav { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--color-border); background: #fff; color: var(--color-secondary); cursor: pointer; transition: background var(--t-fast); }
+.sp-slider__nav:hover { background: var(--color-accent); }
+.sp-slider__nav svg { width: 20px; height: 20px; }
+@media (max-width: 1000px) { .sp-slider .sp-tile { flex-basis: calc((100% - 1.1rem) / 2); } }
+@media (max-width: 640px) { .sp-slider { grid-template-columns: minmax(0, 1fr); } .sp-slider__nav { display: none; } .sp-slider .sp-tile { flex-basis: 85%; } }
