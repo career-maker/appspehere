@@ -185,7 +185,7 @@ document.addEventListener('click', function (e) {
 })();
 
 /* CMS titles are plain text: *words* in a heading become the accent colour (editor cannot emit span/class). Runs always, before the reveal animation. */
-document.querySelectorAll('main h1, main h2').forEach(function (el) {
+document.querySelectorAll('main h1, main h2, .stage > p').forEach(function (el) {
   if (/\*[^*]+\*/.test(el.textContent) && !el.querySelector('.accent')) el.innerHTML = el.innerHTML.replace(/\*([^*<]+)\*/g, '<span class="accent">$1</span>');
 });
 
