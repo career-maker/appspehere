@@ -1715,11 +1715,23 @@ document.addEventListener("DOMContentLoaded", function () {
     slider.innerHTML = '<button type="button" class="sp-slider__nav" data-dir="-1" aria-label="Previous constituencies"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>' + '<button type="button" class="sp-slider__nav" data-dir="1" aria-label="Next constituencies"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>';
     slider.insertBefore(grid, slider.lastChild);
     slider.addEventListener("click", function (e) {
+      var n = e.target.closest(".sp-dsl__nav");
+      if (n) {
+        var t = n.closest(".sp-dsl").querySelector(".sp-dists");
+        t.scrollBy({ left: Number(n.dataset.dir) * t.clientWidth, behavior: "smooth" });
+        return;
+      }
       var b = e.target.closest(".sp-slider__nav");
       if (!b) return;
       var card = grid.querySelector(".sp-tile");
       grid.scrollBy({ left: Number(b.dataset.dir) * (card.offsetWidth + 18), behavior: "smooth" });
     });
+    slider.addEventListener("scroll", function (e) {
+      var t = e.target;
+      if (!t.classList || !t.classList.contains("sp-dists")) return;
+      var c = t.parentNode.querySelector(".sp-dsl__count");
+      if (c) c.textContent = (Math.round(t.scrollLeft / t.clientWidth) + 1) + " / " + t.children.length;
+    }, true);
     outputSection.appendChild(slider);
 
     var cta = document.createElement("div");
@@ -1740,7 +1752,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function buildDistributorHtml(distributors) {
-    var html = '<div class="sp-dists">';
+    var html = '<div class="sp-dists" tabindex="0">';
     distributors.forEach(function (d) {
       var call = (d.mobileLink && d.mobileLink !== "") ? '<a class="sp-dist__call" href="' + escapeAttribute(d.mobileLink) + '">Call</a>' : "";
       html +=
@@ -1754,7 +1766,12 @@ document.addEventListener("DOMContentLoaded", function () {
           '</div>' + call +
         '</div>';
     });
-    return html + '</div>';
+    html += '</div>';
+    if (distributors.length < 2) return html;
+    return '<div class="sp-dsl">' + html +
+      '<div class="sp-dsl__bar"><button type="button" class="sp-dsl__nav" data-dir="-1" aria-label="Previous distributor">&#8592;</button>' +
+      '<span class="sp-dsl__count">1 / ' + distributors.length + '</span>' +
+      '<button type="button" class="sp-dsl__nav" data-dir="1" aria-label="Next distributor">&#8594;</button></div></div>';
   }
 
   function buildMainActionButton(available) {
@@ -1811,4 +1828,3 @@ document.addEventListener("DOMContentLoaded", function () {
   stateSelect.value = "Kerala";
   stateSelect.dispatchEvent(new Event("change"));
 });
-

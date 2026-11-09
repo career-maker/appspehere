@@ -2555,7 +2555,12 @@ main section > .container > p:first-child:has(+ h2), main .container > p:has(+ h
 .sp-seats__txt { font-size: .85rem; color: var(--color-muted); }
 .sp-seats__txt b { color: var(--color-secondary); }
 .sp-tile__empty { margin: 0; font-size: .9rem; color: var(--color-muted); }
-.sp-dists { display: grid; gap: .6rem; }
+.sp-dists { display: flex; gap: .6rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.sp-dists::-webkit-scrollbar { display: none; }
+.sp-dists > .sp-dist { flex: 0 0 100%; scroll-snap-align: start; box-sizing: border-box; }
+.sp-dsl__bar { display: flex; align-items: center; justify-content: center; gap: .75rem; margin-top: .6rem; font-size: .85rem; color: var(--color-muted); }
+.sp-dsl__nav { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--color-border); background: #fff; color: var(--color-secondary); cursor: pointer; }
+.sp-dsl__nav:hover { background: var(--color-accent); }
 .sp-dist { display: grid; grid-template-columns: 56px 1fr auto; gap: .8rem; align-items: center; padding: .7rem; background: #fff; border: 1px solid var(--color-border); border-radius: 14px; }
 .sp-dist__photo { width: 56px; height: 56px; border-radius: 12px; object-fit: cover; background: #e8ebf7; }
 .sp-dist__info { display: grid; gap: .1rem; min-width: 0; }
