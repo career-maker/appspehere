@@ -187,6 +187,7 @@ document.addEventListener('click', function (e) {
 /* CMS titles are plain text, no span/class. Accent colour is applied here to known phrases (and to optional *marked* words). Phrase not in the title = no accent. */
 var ACCENT_PHRASES = ['Thrive in the Digital Era', 'Retail & Distribution', "India's Retail", 'Inclusive Growth?', 'Zero disruption.', 'One platform.', 'Through the retailer.', 'learn more.'];
 document.querySelectorAll('main h1, main h2, .stage > p').forEach(function (el) {
+  el.querySelectorAll('strong').forEach(function (s) { s.classList.add('accent'); });
   if (el.querySelector('.accent')) return;
   var h = el.innerHTML.replace(/\*([^*<]+)\*/g, '<span class="accent">$1</span>');
   if (h === el.innerHTML) (el.id === 'faq-h' ? ['Questions'] : ACCENT_PHRASES).some(function (p) {

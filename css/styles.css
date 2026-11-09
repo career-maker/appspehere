@@ -2634,3 +2634,6 @@ main section > .container > :last-child { margin-bottom: 0; }
 .sp-slider__nav svg { width: 20px; height: 20px; }
 @media (max-width: 1000px) { .sp-slider .sp-tile { flex-basis: calc((100% - 1.1rem) / 2); } }
 @media (max-width: 640px) { .sp-slider { grid-template-columns: minmax(0, 1fr); } .sp-slider__nav { display: none; } .sp-slider .sp-tile { flex-basis: 85%; } }
+
+/* title accent from CMS: <strong> inside a title, coloured via .accent (js/main.js); keep heading weight */
+h1 strong, h2 strong, .stage > p strong { font-weight: inherit; }
