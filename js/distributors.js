@@ -1623,9 +1623,18 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
+  var swipers = [];
+  var SWIPER_SPEED = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 400;
+
+  function clearOutput() {
+    swipers.forEach(function (sw) { sw.destroy(true, true); });
+    swipers = [];
+    outputSection.innerHTML = "";
+  }
+
   stateSelect.addEventListener("change", function () {
     districtSelect.innerHTML = '<option value="">Select District</option>';
-    outputSection.innerHTML = "";
+    clearOutput();
     summarySection.style.display = "none";
 
     if (stateSelect.value && stateNetwork[stateSelect.value]) {
@@ -1646,7 +1655,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var selectedDistrict = districtSelect.value;
 
     if (!selectedDistrict) {
-      outputSection.innerHTML = "";
+      clearOutput();
       summarySection.style.display = "none";
       return;
     }
@@ -1674,7 +1683,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("spAvailableSeats").textContent = availableSeats;
 
     summarySection.style.display = "block";
-    outputSection.innerHTML = "";
+    clearOutput();
 
     var meter = document.getElementById("spMeterBar");
     if (meter) meter.style.width = (totalSeats ? Math.round(districtOnboarded / totalSeats * 100) : 0) + "%";
@@ -1682,7 +1691,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (meterText) meterText.textContent = districtOnboarded + " of " + totalSeats + " seats onboarded";
 
     var grid = document.createElement("div");
-    grid.className = "sp-tiles";
+    grid.className = "sp-tiles swiper-wrapper";
 
     constituencies.forEach(function (constituency) {
       var distributors = distributorData[constituency] || [];
@@ -1696,7 +1705,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       var tile = document.createElement("article");
-      tile.className = "sp-tile" + (onboarded ? " has-dist" : "");
+      tile.className = "sp-tile swiper-slide" + (onboarded ? " has-dist" : "");
       tile.innerHTML =
         '<header class="sp-tile__top">' +
           '<h3>' + escapeHtml(constituency) + '</h3>' +
@@ -1713,26 +1722,33 @@ document.addEventListener("DOMContentLoaded", function () {
     var slider = document.createElement("div");
     slider.className = "sp-slider";
     slider.innerHTML = '<button type="button" class="sp-slider__nav" data-dir="-1" aria-label="Previous constituencies"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>' + '<button type="button" class="sp-slider__nav" data-dir="1" aria-label="Next constituencies"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>';
-    slider.insertBefore(grid, slider.lastChild);
-    slider.addEventListener("click", function (e) {
-      var n = e.target.closest(".sp-dsl__nav");
-      if (n) {
-        var t = n.closest(".sp-dsl").querySelector(".sp-dists");
-        t.scrollBy({ left: Number(n.dataset.dir) * t.clientWidth, behavior: "smooth" });
-        return;
-      }
-      var b = e.target.closest(".sp-slider__nav");
-      if (!b) return;
-      var card = grid.querySelector(".sp-tile");
-      grid.scrollBy({ left: Number(b.dataset.dir) * (card.offsetWidth + 18), behavior: "smooth" });
-    });
-    slider.addEventListener("scroll", function (e) {
-      var t = e.target;
-      if (!t.classList || !t.classList.contains("sp-dists")) return;
-      var c = t.parentNode.querySelector(".sp-dsl__count");
-      if (c) c.textContent = (Math.round(t.scrollLeft / t.clientWidth) + 1) + " / " + t.children.length;
-    }, true);
+    var viewport = document.createElement("div");
+    viewport.className = "swiper sp-tiles-swiper";
+    viewport.appendChild(grid);
+    slider.insertBefore(viewport, slider.lastChild);
     outputSection.appendChild(slider);
+
+    if (window.Swiper) {
+      swipers.push(new Swiper(viewport, {
+        slidesPerView: 1.18,
+        spaceBetween: 18,
+        speed: SWIPER_SPEED,
+        breakpoints: { 641: { slidesPerView: 2 }, 1001: { slidesPerView: 3 } },
+        navigation: { prevEl: slider.querySelector(".sp-slider__nav[data-dir=\"-1\"]"), nextEl: slider.querySelector(".sp-slider__nav[data-dir=\"1\"]"), disabledClass: "is-disabled" },
+        a11y: { prevSlideMessage: "Previous constituencies", nextSlideMessage: "Next constituencies" }
+      }));
+      slider.querySelectorAll(".sp-dsl").forEach(function (box) {
+        var count = box.querySelector(".sp-dsl__count");
+        swipers.push(new Swiper(box.querySelector(".sp-dists"), {
+          nested: true,
+          spaceBetween: 10,
+          speed: SWIPER_SPEED,
+          navigation: { prevEl: box.querySelector(".sp-dsl__nav[data-dir=\"-1\"]"), nextEl: box.querySelector(".sp-dsl__nav[data-dir=\"1\"]"), disabledClass: "is-disabled" },
+          a11y: { prevSlideMessage: "Previous distributor", nextSlideMessage: "Next distributor" },
+          on: { slideChange: function (sw) { if (count) count.textContent = (sw.activeIndex + 1) + " / " + sw.slides.length; } }
+        }));
+      });
+    }
 
     var cta = document.createElement("div");
     cta.className = "sp-cta";
@@ -1752,11 +1768,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function buildDistributorHtml(distributors) {
-    var html = '<div class="sp-dists" tabindex="0">';
+    var html = '<div class="sp-dists swiper"><div class="swiper-wrapper">';
     distributors.forEach(function (d) {
       var call = (d.mobileLink && d.mobileLink !== "") ? '<a class="sp-dist__call" href="' + escapeAttribute(d.mobileLink) + '">Call</a>' : "";
       html +=
-        '<div class="sp-dist">' +
+        '<div class="sp-dist swiper-slide">' +
           '<img class="sp-dist__photo" src="' + escapeAttribute(d.photo) + '" alt="' + escapeAttribute(d.name) + '">' +
           '<div class="sp-dist__info">' +
             '<strong>' + escapeHtml(d.name) + '</strong>' +
@@ -1766,7 +1782,7 @@ document.addEventListener("DOMContentLoaded", function () {
           '</div>' + call +
         '</div>';
     });
-    html += '</div>';
+    html += '</div></div>';
     if (distributors.length < 2) return html;
     return '<div class="sp-dsl">' + html +
       '<div class="sp-dsl__bar"><button type="button" class="sp-dsl__nav" data-dir="-1" aria-label="Previous distributor">&#8592;</button>' +
