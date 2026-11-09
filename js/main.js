@@ -184,9 +184,17 @@ document.addEventListener('click', function (e) {
   });
 })();
 
-/* CMS titles are plain text: *words* in a heading become the accent colour (editor cannot emit span/class). Runs always, before the reveal animation. */
+/* CMS titles are plain text, no span/class. Accent colour is applied here to known phrases (and to optional *marked* words). Phrase not in the title = no accent. */
+var ACCENT_PHRASES = ['Thrive in the Digital Era', 'Retail & Distribution', "India's Retail", 'Inclusive Growth?', 'Zero disruption.', 'One platform.', 'Through the retailer.', 'learn more.'];
 document.querySelectorAll('main h1, main h2, .stage > p').forEach(function (el) {
-  if (/\*[^*]+\*/.test(el.textContent) && !el.querySelector('.accent')) el.innerHTML = el.innerHTML.replace(/\*([^*<]+)\*/g, '<span class="accent">$1</span>');
+  if (el.querySelector('.accent')) return;
+  var h = el.innerHTML.replace(/\*([^*<]+)\*/g, '<span class="accent">$1</span>');
+  if (h === el.innerHTML) (el.id === 'faq-h' ? ['Questions'] : ACCENT_PHRASES).some(function (p) {
+    var e = p.replace(/&/g, '&amp;');
+    if (h.indexOf(e) < 0) return false;
+    h = h.replace(e, '<span class="accent">' + e + '</span>'); return true;
+  });
+  if (h !== el.innerHTML) el.innerHTML = h;
 });
 
 /* Title reveal: words rise out of a mask when a heading scrolls in (and when a hero slide becomes active) */
