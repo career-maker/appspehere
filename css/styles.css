@@ -1773,7 +1773,7 @@ ul:has(> li > .team__ph) span { color: var(--color-muted); }
 #faq .faq { grid-template-columns: .85fr 1.25fr; gap: clamp(2rem, 5vw, 5rem); align-items: start; }
 .faq__intro h2::before { content: ""; display: block; width: 3rem; height: 3px; border-radius: 2px; background: var(--color-accent); margin-bottom: 1.5rem; }
 .faq__intro h2 { font-family: var(--font-display); font-size: clamp(2.2rem, 1.2rem + 3.4vw, 4.4rem); line-height: 1; letter-spacing: -.035em; font-weight: 700; }
-.faq__g { color: #22d3a0; }
+.faq__g, #faq h2 .accent { color: #22d3a0; }
 .faq__intro h2 + p { margin-top: 1.5rem; max-width: 30rem; color: var(--color-ink-muted); font-size: 1.1rem; line-height: 1.55; }
 .faq__art { display: block; width: 100%; max-width: 30rem; height: auto; margin-top: 2rem; filter: drop-shadow(0 24px 40px rgba(20, 40, 160, .45)); }
 #faq .faq__list { border-top: 0; display: grid; gap: .7rem; }
