@@ -2609,12 +2609,20 @@ main section > .container > p:first-child:has(+ h2), main .container > p:has(+ h
 .role-panel > ul li:not(:has(> svg))::before { background: var(--color-accent); }
 @media (max-width: 900px) { .role-panel > ul:not(:has(> li > svg)) { grid-template-columns: 1fr; } }
 
-/* customer experience: intro text beside its main image */
+/* customer experience: a bare <img> from the CMS gets the same card look as .figure-card */
+.split--img > img, .split--img > p > img, .split--img > div > img { display: block; width: 100%; height: auto; border-radius: var(--radius-lg); box-shadow: 0 30px 60px -30px rgba(15, 21, 71, .4); }
+@media (min-width: 861px) { .split--img > img { position: sticky; top: calc(var(--header-h, 72px) + 2rem); align-self: start; } }
+
+/* founder: image column keeps its size, the message column takes the extra width */
 @media (min-width: 861px) {
-  .container:has(> .cx-intro + .figure-card) { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center; }
-  .container:has(> .cx-intro + .figure-card) > .figure-card { margin: 0; }
+  .founder > .container { width: min(100% - 2 * var(--gutter), 1480px); }
+  .founder__card { grid-template-columns: minmax(0, clamp(26rem, 30vw, 30.6rem)) minmax(0, 1fr); gap: clamp(1.5rem, 3vw, 2.5rem); }
 }
-.container:has(> .cx-intro + .figure-card) > .figure-card { margin-top: 1.5rem; }
+
+/* CMS output: empty paragraphs and spacer breaks add stray gaps */
+main p:empty, main p:has(> br:only-child), main p:has(> br:only-child + br) { display: none; }
+main section > .container > :last-child { margin-bottom: 0; }
+.hero:not(:has([data-stage="1"])) .hero__scroll, .hero:not(:has([data-stage="1"])) .hero__rail { display: none; }
 
 /* distributors: constituency tiles as a scroll-snap slider */
 .sp-slider { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: .75rem; align-items: center; }
