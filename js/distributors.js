@@ -1575,6 +1575,34 @@ document.addEventListener("DOMContentLoaded", function () {
      It is NOT shown publicly. Add real, consented distributors here using the same shape:
      "Cherthala": [ { name, tradeName, mobileDisplay, mobileLink, gstDisplay, addressDisplay, photo } ] */
   var distributorData = {
+    /* SAMPLE (demo only, remove before go-live) */
+    "Aluva": [
+      { name: "Mr. Sample Distributor 1", tradeName: "Sample Traders", mobileDisplay: "+91 XXXXX XX101", mobileLink: "", gstDisplay: "GST Verified", addressDisplay: "Aluva, Ernakulam", photo: "assets/distributor-placeholder.svg" }
+    ],
+    /* SAMPLE (demo only, remove before go-live) */
+    "Kochi": [
+      { name: "Mr. Sample Distributor 2", tradeName: "Sample Traders", mobileDisplay: "+91 XXXXX XX102", mobileLink: "", gstDisplay: "GST Verified", addressDisplay: "Kochi, Ernakulam", photo: "assets/distributor-placeholder.svg" },
+      { name: "Mr. Sample Distributor 3", tradeName: "Sample Agencies", mobileDisplay: "+91 XXXXX XX103", mobileLink: "", gstDisplay: "GST Verified", addressDisplay: "Kochi, Ernakulam", photo: "assets/distributor-placeholder.svg" }
+    ],
+    /* SAMPLE (demo only, remove before go-live) */
+    "Kalamassery": [
+      { name: "Mr. Sample Distributor 4", tradeName: "Sample Enterprises", mobileDisplay: "+91 XXXXX XX104", mobileLink: "", gstDisplay: "GST Verified", addressDisplay: "Kalamassery, Ernakulam", photo: "assets/distributor-placeholder.svg" },
+      { name: "Mr. Sample Distributor 5", tradeName: "Sample Traders", mobileDisplay: "+91 XXXXX XX105", mobileLink: "", gstDisplay: "GST Verified", addressDisplay: "Kalamassery, Ernakulam", photo: "assets/distributor-placeholder.svg" },
+      { name: "Mr. Sample Distributor 6", tradeName: "Sample Agencies", mobileDisplay: "+91 XXXXX XX106", mobileLink: "", gstDisplay: "GST Verified", addressDisplay: "Kalamassery, Ernakulam", photo: "assets/distributor-placeholder.svg" }
+    ],
+    /* SAMPLE (demo only, remove before go-live) */
+    "Thripunithura": [
+      { name: "Mr. Sample Distributor 7", tradeName: "Sample Distributors", mobileDisplay: "+91 XXXXX XX107", mobileLink: "", gstDisplay: "GST Verified", addressDisplay: "Thripunithura, Ernakulam", photo: "assets/distributor-placeholder.svg" }
+    ],
+    /* SAMPLE (demo only, remove before go-live) */
+    "Angamaly": [
+      { name: "Mr. Sample Distributor 8", tradeName: "Sample Traders", mobileDisplay: "+91 XXXXX XX108", mobileLink: "", gstDisplay: "GST Verified", addressDisplay: "Angamaly, Ernakulam", photo: "assets/distributor-placeholder.svg" },
+      { name: "Mr. Sample Distributor 9", tradeName: "Sample Enterprises", mobileDisplay: "+91 XXXXX XX109", mobileLink: "", gstDisplay: "GST Verified", addressDisplay: "Angamaly, Ernakulam", photo: "assets/distributor-placeholder.svg" }
+    ],
+    /* SAMPLE (demo only, remove before go-live) */
+    "Muvattupuzha": [
+      { name: "Mr. Sample Distributor 10", tradeName: "Sample Agencies", mobileDisplay: "+91 XXXXX XX110", mobileLink: "", gstDisplay: "GST Verified", addressDisplay: "Muvattupuzha, Ernakulam", photo: "assets/distributor-placeholder.svg" }
+    ],
     "Cherthala": [{
       name: "Mr. Sample Distributor",
       tradeName: "Sample Traders",
