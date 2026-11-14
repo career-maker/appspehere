@@ -2631,3 +2631,106 @@ main section > .container > :last-child { margin-bottom: 0; }
 
 /* title accent from CMS: <strong> inside a title, coloured via .accent (js/main.js); keep heading weight */
 h1 strong, h2 strong, .stage > p strong { font-weight: inherit; }
+@media (max-width: 1000px) { .sp-slider .sp-tile { flex-basis: calc((100% - 1.1rem) / 2); } }
+@media (max-width: 640px) { .sp-slider { grid-template-columns: minmax(0, 1fr); } .sp-slider__nav { display: none; } .sp-slider .sp-tile { flex-basis: 85%; } }
+
+/* ===== v18: hero image clear of side widgets, calmer type scale, home sections fit the screen ===== */
+:root {
+  --fs-hero: clamp(2.5rem, 1rem + 4.6vw, 5.5rem);
+  --fs-h2: clamp(1.75rem, 1rem + 2.2vw, 3.1rem);
+  --fs-lead: clamp(1rem, .92rem + .3vw, 1.2rem);
+  --space-section: clamp(2.75rem, 7svh, 5.5rem);
+}
+@media (min-width: 1700px) { :root { --fs-hero: 6rem; --fs-h2: 3.4rem; } }
+
+/* hero scene: never under the 52–62px side widgets (desktop/laptop) */
+@media (min-width: 1100px) {
+  .layer--store { right: max(calc(var(--edge) + 1vw), 7rem); width: min(44vw, 118svh, 780px); }
+}
+@media (min-width: 1100px) and (max-width: 1439px) { .layer--store { width: min(42vw, 110svh, 640px); } }
+@media (min-width: 1181px) and (max-height: 760px) { .layer--store { width: min(40vw, 100svh); right: max(calc(var(--edge) + 1vw), 7rem); } }
+
+/* oversized display text, all pages */
+.hero .stage h1, .stage h1 { font-size: clamp(2.2rem, min(4.2vw, 9svh), 4.5rem); }
+.stage > p:nth-child(2) { font-size: clamp(1.6rem, min(3.4vw, 8svh), 3.4rem); }
+.page-hero h1 { font-size: clamp(2rem, 1rem + 3.4vw, 3.9rem); }
+.cta h2 { font-size: clamp(2rem, 1rem + 3.6vw, 4rem); max-width: 18ch; }
+.philosophy h2 { font-size: clamp(1.9rem, 1rem + 4vw, 4.4rem); }
+.solution__text h2, .platform h2, .prob h2 { font-size: var(--fs-h2); }
+.philosophy blockquote, .quote blockquote { font-size: clamp(1.25rem, 1rem + 1.4vw, 2.2rem); }
+.role-panel h3, .story__step h3 { font-size: clamp(1.4rem, 1rem + 1.5vw, 2.2rem); }
+.zero strong, .step__n, .sp-summary-card strong { font-size: clamp(2rem, 1.2rem + 2.2vw, 3.2rem); }
+.catalog__num { font-size: clamp(2.6rem, 1rem + 4.4vw, 6rem); }
+.link-card h3, .post-card h2 { font-size: clamp(1.3rem, 1rem + 1.1vw, 1.9rem); }
+
+/* home: every section after the hero is one screen tall, content centred */
+@media (min-width: 900px) {
+  main > section#problem, main > section#roles, main > section#difference, main > section#philosophy, main > section#voices, main > section#app, main > section#faq, main > section#cta {
+    min-height: 100svh; display: flex; flex-direction: column; justify-content: center; box-sizing: border-box;
+    padding-block: max(var(--space-section), calc(var(--header-h) * .6));
+  }
+}
+/* v18: compact content so each home section fits one screen */
+@media (min-width: 900px) {
+  main > section#problem, main > section#roles, main > section#difference, main > section#philosophy, main > section#voices, main > section#app, main > section#faq, main > section#cta { padding-block: max(2.5rem, calc(var(--header-h) * .55)); }
+  #roles .section-head, #difference .section-head, #voices .section-head { margin-bottom: clamp(1rem, 3svh, 2rem); }
+  #roles .section-head > p { font-size: 1rem; max-width: 44rem; }
+  #roles .role-panel { padding: clamp(1.1rem, 2.4svh, 2rem) clamp(1.25rem, 3vw, 2.5rem); min-height: 0; }
+  #roles .role-panel p { font-size: .95rem; line-height: 1.5; }
+  #roles .role-panel > h3 + p { font-size: 1.02rem; margin-top: .6rem; }
+  #roles .role-panel p[style] { margin-top: .6rem !important; }
+  #roles .role-panel__cta { margin-top: 1rem; }
+  #roles .role-tab { padding: .8rem 1.1rem; }
+  #roles .role-fig { min-height: 0; max-height: 52svh; }
+  .philosophy figure { margin-top: clamp(1.5rem, 4svh, 3rem); }
+  .philosophy h2 ~ p { margin-top: 1rem; }
+  .faq { gap: clamp(1.5rem, 4vw, 4rem); align-items: center; }
+  .faq summary { padding: .6rem 0; font-size: clamp(.95rem, .85rem + .25vw, 1.1rem); }
+  .faq summary i { width: 30px; height: 30px; }
+  .faq__a { padding-bottom: .9rem; font-size: .92rem; line-height: 1.5; }
+  .faq__art { max-height: 28svh; width: auto; }
+}
+@media (min-width: 900px) {
+  #faq .faq__list { gap: .4rem; }
+  #faq .faq summary { padding: .6rem 1.1rem; font-size: .95rem; }
+  #faq .faq summary i { width: 28px; height: 28px; }
+  #faq .faq__a { padding: 0 1.1rem .8rem; font-size: .9rem; line-height: 1.5; }
+}
+@media (min-width: 900px) {
+  #faq .faq__list { gap: .3rem; }
+  #faq .faq summary { padding: .5rem 1.1rem; }
+  #faq { padding-block: 1.5rem; }
+  .testi__visual { padding-block: 1rem 2rem; }
+  .testi__photo { width: min(100%, 46svh); margin-inline: auto; }
+  .testi .quote blockquote::before { width: 64px; height: 64px; margin-bottom: 1rem; }
+}
+@media (min-width: 900px) and (max-height: 800px) {
+  :root { --fs-h2: clamp(1.6rem, min(1rem + 2.2vw, 6.2svh), 3.1rem); --fs-lead: clamp(.95rem, 2.4svh, 1.15rem); }
+  main > section#problem, main > section#roles, main > section#difference, main > section#philosophy, main > section#voices, main > section#app, main > section#cta { padding-block: max(1.5rem, calc(var(--header-h) * .5)); }
+  .testi .quote blockquote { font-size: clamp(1.05rem, 3svh, 1.6rem); }
+  .testi .quote-controls { margin-top: 1rem; }
+  .testi .icon-btn { width: 46px; height: 46px; }
+  .testi__photo { width: min(100%, 40svh); }
+  #faq .faq summary { padding: .4rem 1.1rem; }
+  #faq .faq__a { font-size: .85rem; padding-bottom: .6rem; }
+  #roles .role-panel p { font-size: .9rem; }
+  .problem-section .problem__p, .prob p { font-size: clamp(.92rem, 2.3svh, 1.1rem); }
+}
+@media (min-width: 900px) and (max-height: 800px) {
+  .prob p, .prob ul + p { margin-top: .8rem; }
+  .prob ul { margin-top: .8rem; }
+  .prob ul + p { padding: .8rem 1.1rem; margin-top: 1rem; }
+  .prob .problem__p { line-height: 1.5; }
+  .prob__photo { max-height: 62svh; }
+  .prob__photo img { max-height: 62svh; object-fit: cover; }
+  #faq { padding-block: 1rem; }
+  #faq .faq__list { gap: .25rem; }
+  #roles .role-tab { padding: .6rem 1rem; }
+  #roles .role-fig { max-height: 44svh; }
+}
+@media (min-width: 900px) and (max-height: 740px) {
+  #faq .faq summary { padding: .32rem 1.1rem; font-size: .9rem; }
+  #faq .faq__a { font-size: .82rem; line-height: 1.4; }
+  #roles .role-panel { padding-block: .9rem; }
+  #roles .section-head { margin-bottom: .75rem; }
+}
